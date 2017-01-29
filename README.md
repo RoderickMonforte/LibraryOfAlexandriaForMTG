@@ -45,7 +45,7 @@ $700):
 
 * [Screen Design](DesignDocuments/Screens.md)
 * [Application Flow](DesignDocuments/applicationFlow.md)
-* [Database Design](DesignDocuments/databaseDiagram.png)
+* [Database Design](DesignDocuments/MTG DB Model.png)
 
 ### [Project Plan](ProjectPlan.md)
 
