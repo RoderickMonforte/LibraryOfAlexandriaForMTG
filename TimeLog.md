@@ -7,5 +7,5 @@
 | 1/21/17 | Exercise for week 1  | 3  |   | 
 | 1/28/17| Set up project repository, write problem statement, time log, 
 technologies used| 4 | |
+| 1/29/17 | Task for Individual projects| 4 | |
 | 1/29/17 | Readings for week 12and 2| 2.5 | |
-
