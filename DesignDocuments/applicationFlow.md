@@ -34,13 +34,22 @@ is sent.
 
 1. Page sends a request to  servlet 
 along with criteria to view all cards in a collectgion.
-1. Servlet uses the cards dao to select trails according to criteria
+1. Servlet uses the cards dao to select cards according to criteria
 1. Dao performs select and creates card objects from results.
 1. Dao returns list of cards matching criteria to servlet.
 1. Servlet sends list back to Card  jsp.
 1. Card jsp displays the list of cards.
 1. Consider paging results so page does not get super long and too much data 
 is sent.
+
+### View Cards Details
+
+1. Page sends a request to  servlet 
+along with criteria to view a card details.
+1. Servlet uses the webservice to get details about a card.
+1. Servlet creates an object based on the info from webservice.
+1. Servlet sends details back to CardDetails  jsp.
+1. CardDetails jsp displays the card details.
 
 ### About
 

@@ -20,7 +20,7 @@ varying
 Sample card of the project namesake (currently valued starting from $300 - 
 $700):
 
-![Trail Description](Images/LibraryofAlexandria.jpeg)
+![Sample Card](Images/LibraryofAlexandria.jpeg)
 
 ### Project Technologies/Techniques 
 

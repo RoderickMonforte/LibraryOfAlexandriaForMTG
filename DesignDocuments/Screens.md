@@ -1,32 +1,24 @@
 # Screen Design
 
-### Home Page aka Reports Page
+### Home Page aka Sign in Page
 
-![Home Page](wireframes/1-Reports.png)
+![Home Page](Wireframes/1-Home.png)
 
-### Add New Trail Report Page
+### New User Entry Form Page
 
-![Add New Report](wireframes/2-NewReport.png)
+![New User](Wireframes/2-New User Entry.png)
 
-### Add New Trail Page
+### Display Collection Page
 
-![Add New Trail](wireframes/3-NewTrail.png)
+![Display Collection](Wireframes/3-Display Collection.png)
 
-### Trail Information Page
+### Display Card Page
 
-![View Trail Info](wireframes/4-Trail.png)
-
-### Dialog for Sign In
-
-![Sign In Dialog](wireframes/6-Sign-In.png)
-
-### Dialog for Sign Up
-
-![Sign up Dialog](wireframes/7-SignUp.png)
+![Display Card](Wireframes/5-Display Card Detail.png)
 
 ### About Page
 
-![About Page](wireframes/8-About.png)
+![About Page](Wireframes/6-About.png)
 
 
 
