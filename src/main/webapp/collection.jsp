@@ -40,18 +40,19 @@
         <h2>Search Results: </h2>
         <table id="userTable" class="display" cellspacing="0" width="100%">
             <thead>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>ID</th>
-            <th>Age</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Notes</th>
+            <th>Price</th>
+            <th>Action</th>
             </thead>
             <tbody>
             <c:forEach var="user" items="${users}">
                 <tr>
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td></td>
-                    <td>${user.userid}</td>
-                    <td>${user.calculateAge()}</td>
+                    <td>${user.displayName}</td>
+                    <td>${user.description}</td></td>
+                    <td>${user.note}</td>
+                    <td>${user.getPrice()}</td>
                 </tr>
 
 
