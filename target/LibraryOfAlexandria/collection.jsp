@@ -28,30 +28,26 @@
 </ul>
 </div>
 <div id="content">
-<h3>Welcome of Library of Alexandria</h3>
-<img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"
-     style="height: 250px; width: 200px;" />
-<p>This is a simple MTG cards cataloging application. You can add a
-    collection and then add cards to a collection. Current price of cards are
-    given.
-</p>
+<h3>${user.displayName} Collection</h3>
+
 <div>
     <div class="container-fluid">
         <h2>Search Results: </h2>
         <table id="userTable" class="display" cellspacing="0" width="100%">
             <thead>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>ID</th>
-            <th>Age</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Notes</th>
+            <th>Price</th>
+            <th>Action</th>
             </thead>
             <tbody>
-            <c:forEach var="user" items="${users}">
+            <c:forEach var="collection" items="${collection}">
                 <tr>
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td></td>
-                    <td>${user.userid}</td>
-                    <td>${user.calculateAge()}</td>
+                    <td>${collection.displayName}</td>
+                    <td>${collection.description}</td></td>
+                    <td>${collection.note}</td>
+                    <td>${collection.getPrice()}</td>
                 </tr>
 
 

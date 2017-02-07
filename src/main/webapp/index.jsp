@@ -41,6 +41,8 @@
             <input type="text" class="form-control" id="passWord"
                    name="PasswordText"
                    placeholder="Enter Password">
+            <br/>
+            <a href="newUser.jsp">New User</a>
 
         </div>
         <button type="submit" name="submit" value="Enter"
