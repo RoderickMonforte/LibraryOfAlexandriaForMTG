@@ -1,6 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="head.jsp" />
 
 
@@ -14,13 +14,7 @@
     my veins." - D.B.
 </h4>
 </div>
-<div id="nav">
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Collection</a></li>
-</ul>
-</div>
+<c:import url="menu.jsp" />
 <div id="content">
 <h3>Welcome of Library of Alexandria</h3>
 <img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"

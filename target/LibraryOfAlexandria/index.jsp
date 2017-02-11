@@ -14,13 +14,7 @@
     my veins." - D.B.
 </h4>
 </div>
-<div id="nav">
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Collection</a></li>
-</ul>
-</div>
+<c:import url="menu.jsp" />
 <div id="content">
 <h3>Welcome of Library of Alexandria</h3>
 <img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"
@@ -41,6 +35,8 @@
             <input type="text" class="form-control" id="passWord"
                    name="PasswordText"
                    placeholder="Enter Password">
+            <br/>
+            <a href="newUser.jsp">New User</a>
 
         </div>
         <button type="submit" name="submit" value="Enter"

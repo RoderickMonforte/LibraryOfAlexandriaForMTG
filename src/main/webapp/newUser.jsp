@@ -14,13 +14,7 @@
     my veins." - D.B.
 </h4>
 </div>
-<div id="nav">
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Collection</a></li>
-</ul>
-</div>
+<c:import url="menu.jsp" />
 <div id="content">
 <h3>New User Entry Form</h3>
 

@@ -14,13 +14,7 @@
     my veins." - D.B.
 </h4>
 </div>
-<div id="nav">
-<ul>
-<li><a href="index.jsp">Home</a></li>
-<li><a href="about.jsp">About</a></li>
-<li><a href="collection.jsp">Collection</a></li>
-</ul>
-</div>
+<c:import url="menu.jsp" />
 <div id="content">
 <h3>Welcome of Library of Alexandria</h3>
 <img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"
