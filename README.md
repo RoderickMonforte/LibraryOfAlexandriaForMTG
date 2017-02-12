@@ -25,11 +25,9 @@ $700):
 ### Project Technologies/Techniques 
 
 * Security/Authentication
-  * Admin role: create/read/update/delete (crud) of all data
-  * User role: submit trail reports
-  * All: anyone can view trail information (no login)
+  * User role: add collection and cards
 * Database (MySQL and Hibernate)
-  * Store users and roles
+  * Store users
   * Store magic card collection and price
   * Store magic card information
 * Web Services or APIs

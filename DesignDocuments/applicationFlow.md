@@ -22,11 +22,11 @@ pages.  JDBCRealm used for authentication (users, users_roles, and roles table).
 ### View Collection
 
 1. Page sends a request to view all of user's collection.
-1. Servlet uses the collection dao to select reports according to criteria
-1. Dao performs select and creates report objects from results.
-1. Dao returns list of report matching criteria to servlet.
+1. Servlet uses the collection dao to return all collections.
+1. Dao performs select and creates collection objects from results.
+1. Dao returns list of all the collections.
 1. Servlet sends list back to collection jsp.
-1. Collection jsp displays the reports.
+1. Collection jsp displays the collections.
 1. Consider paging results so page does not get super long and too much data 
 is sent.
 
@@ -58,11 +58,11 @@ along with criteria to view a card details.
 
 ### Add Collection
 1. User fills up the collection form
-1. Details are sent to Add Trail Report servlet
+1. Details are sent to Add Card servlet
 1. Servlet creates Collection object
 1. Servlet sends object to dao
 1. Dao adds collection to the database
-1. Servlet sends confirmation to report page that collection has been added.
+1. Servlet sends confirmation to collection page that collection has been added.
 
 ### Add Card
 1. User enters Card user details

@@ -42,18 +42,17 @@ more detail.
 ### Week 5
 
 - [ ] Time log entries
-- [ ] Create DAO for trails
-- [ ] Create DAO for trail report
-- [ ] Create display trail report functionality
-- [ ] Create display trail functionality
+- [ ] Create DAO for collection
+- [ ] Create DAO for card
+- [ ] Create display collection functionality
+- [ ] Create display card functionality
 - [ ] Add tests for new functionality
 
 ### Week 6
 - [ ] Time log entries
-- [ ] Integration with google maps api
-- [ ] Create add trail report functionality
-- [ ] Create add trail functionality
-- [ ] Set up Continuous Integration on openshift
+- [ ] Integration with MTG apis
+- [ ] Create add collection functionality
+- [ ] Create add card functionality
 
 ### Week 7
 - [ ] Time log entries
