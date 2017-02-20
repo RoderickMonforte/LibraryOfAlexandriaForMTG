@@ -81,7 +81,7 @@ div#nav li a {
 }
 div#nav li a:hover {
   padding: 4px 2px 2px;
-  background-image: url(images/bg.jpg);
+  background-image: url(/images/bg.jpg);
   color: #eeeeee;
 }
 div#content {
@@ -103,13 +103,31 @@ div#content img.right {
   float: right;
   margin-left: 1em;
 }
+div#special form  {
+    display: table;
+}
+div#special p     {
+    display: table-row;
+}
+div#special label {
+    display: table-cell;
+    text-align: right;
+    padding-right: 5px;
+}
+div#special input {
+    display: table-cell;
+}
 div#footer {
-  padding: 10px;
-  background-color: silver;
-  text-align: center;
-  margin-right: auto;
-  width: 52%;
-  margin-left: auto;
-  margin-top: 0.5em;
-  font-family: Ebrima;
+    padding: 10px;
+    background-color: silver;
+    text-align: center;
+    margin-right: auto;
+    width: 52%;
+    margin-left: auto;
+    margin-top: 0.5em;
+    font-family: Ebrima;
+}
+div#message {
+    color : red;
+    background-color: yellow;
 }

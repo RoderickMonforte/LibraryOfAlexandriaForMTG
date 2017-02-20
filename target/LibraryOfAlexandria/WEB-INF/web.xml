@@ -4,4 +4,27 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>Library of Alexandria</display-name>
+    <!-- Tell the server to use form-based authentication. -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/loginFailed.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <!-- Protect everything within the "investing" directory. -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>collection</web-resource-name>
+            <url-pattern>/collection.jsp</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>user</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-role>
+        <role-name>user</role-name>
+    </security-role>
+
 </web-app>

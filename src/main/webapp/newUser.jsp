@@ -1,8 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <c:import url="head.jsp" />
-
 
 <body>
 <div id="wrap">
@@ -18,34 +17,41 @@
 <div id="content">
 <h3>New User Entry Form</h3>
 
-<div>
-    <form action="collection.jsp" class="form-inline">
-        <div class="form-group">
-            <label>User ID</label>
+<div id="message">
+    <p>${errorMessage}</p>
+</div>
+
+<div id="special">
+    <form action="addUser" method="post">
+        <p>
+            <label for="userID">User ID</label>
             <input type="text" class="form-control" id="userID"
                    name="UserIDName"
                    placeholder="Enter User ID">
-            <br/>
-            <label>Name</label>
+        </p>
+        <p>
+            <label for="displayName">Name</label>
             <input type="text" class="form-control" id="displayName"
                    name="DisplayNameName"
                    placeholder="Enter Name">
-            <br/>
-
-            <label>Password</label>
-            <input type="text" class="form-control" id="passWord"
+        </p>
+        <p>
+            <label for = "passWord">Password</label>
+            <input type="password" class="form-control" id="passWord"
                    name="PasswordText"
                    placeholder="Enter Password">
-            <br/>
-            <label>Re-type Password</label>
-            <input type="text" class="form-control" id="rePassWord"
+        </p>
+        <p>
+            <label for ="repassword">Re-type Password</label>
+            <input type="password" class="form-control" id="rePassWord"
                    name="RePasswordText"
                    placeholder="Re-type Password">
-            <br/>
+        </p>
 
-        </div>
-        <button type="submit" name="submit" value="Enter"
+        <tr><th><button type="submit" name="submit" value="Enter"
                 class="btn btn-primary">Enter</button>
+            </th>
+        </tr>
     </form>
 
 </div>

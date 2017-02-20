@@ -13,100 +13,101 @@
     <schema id="7" parent="1" name="SAMPLE"/>
     <schema id="8" parent="1" name="student"/>
     <schema id="9" parent="1" name="sys"/>
-    <table id="10" parent="2" name="Card"/>
-    <table id="11" parent="2" name="Collection"/>
-    <table id="12" parent="2" name="User"/>
-    <column id="13" parent="10" name="Collection_collection_id">
+    <schema id="10" parent="1" name="WEEK5"/>
+    <table id="11" parent="2" name="Card"/>
+    <table id="12" parent="2" name="Collection"/>
+    <table id="13" parent="2" name="User"/>
+    <column id="14" parent="11" name="Collection_collection_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="14" parent="10" name="universal_card_id">
+    <column id="15" parent="11" name="universal_card_id">
       <Position>2</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="15" parent="10" name="owned_qy">
+    <column id="16" parent="11" name="owned_qy">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="10" name="wishlist_qy">
+    <column id="17" parent="11" name="wishlist_qy">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="10" name="note_tx">
+    <column id="18" parent="11" name="note_tx">
       <Position>5</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <index id="18" parent="10" name="card_id_UNIQUE">
+    <index id="19" parent="11" name="card_id_UNIQUE">
       <ColNames>universal_card_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="19" parent="10" name="fk_Card_Collection1_idx">
+    <index id="20" parent="11" name="fk_Card_Collection1_idx">
       <ColNames>Collection_collection_id</ColNames>
     </index>
-    <key id="20" parent="10" name="PRIMARY">
+    <key id="21" parent="11" name="PRIMARY">
       <ColNames>Collection_collection_id
 universal_card_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="21" parent="10" name="card_id_UNIQUE">
+    <key id="22" parent="11" name="card_id_UNIQUE">
       <ColNames>universal_card_id</ColNames>
       <UnderlyingIndexName>card_id_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="22" parent="10" name="Card_Collection_collection_id_fk">
+    <foreign-key id="23" parent="11" name="Card_Collection_collection_id_fk">
       <ColNames>Collection_collection_id</ColNames>
       <RefSchemaName>LibraryOfAlexandria</RefSchemaName>
       <RefTableName>Collection</RefTableName>
       <RefColNames>collection_id</RefColNames>
       <OnDelete>delete</OnDelete>
     </foreign-key>
-    <column id="23" parent="11" name="collection_id">
+    <column id="24" parent="12" name="collection_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="24" parent="11" name="User_user_id">
+    <column id="25" parent="12" name="User_user_id">
       <Position>2</Position>
       <DataType>varchar(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="25" parent="11" name="display_nm">
+    <column id="26" parent="12" name="display_nm">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="26" parent="11" name="description_tx">
+    <column id="27" parent="12" name="description_tx">
       <Position>4</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="27" parent="11" name="note_tx">
+    <column id="28" parent="12" name="note_tx">
       <Position>5</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="28" parent="11" name="price_at">
+    <column id="29" parent="12" name="price_at">
       <Position>6</Position>
       <DataType>decimal(9,2)|0</DataType>
     </column>
-    <index id="29" parent="11" name="collection_id_UNIQUE">
+    <index id="30" parent="12" name="collection_id_UNIQUE">
       <ColNames>collection_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="30" parent="11" name="fk_Collection_User_idx">
+    <index id="31" parent="12" name="fk_Collection_User_idx">
       <ColNames>User_user_id</ColNames>
     </index>
-    <key id="31" parent="11" name="PRIMARY">
+    <key id="32" parent="12" name="PRIMARY">
       <ColNames>collection_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="32" parent="11" name="collection_id_UNIQUE">
+    <key id="33" parent="12" name="collection_id_UNIQUE">
       <ColNames>collection_id</ColNames>
       <UnderlyingIndexName>collection_id_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="33" parent="11" name="fk_Collection_User">
+    <foreign-key id="34" parent="12" name="fk_Collection_User">
       <ColNames>User_user_id</ColNames>
       <RefSchemaName>LibraryOfAlexandria</RefSchemaName>
       <RefTableName>User</RefTableName>
@@ -114,22 +115,28 @@ universal_card_id</ColNames>
       <OnUpdate>update</OnUpdate>
       <OnDelete>delete</OnDelete>
     </foreign-key>
-    <column id="34" parent="12" name="user_id">
+    <column id="35" parent="13" name="user_id">
       <Position>1</Position>
       <DataType>varchar(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="35" parent="12" name="display_nm">
+    <column id="36" parent="13" name="display_nm">
       <Position>2</Position>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="36" parent="12" name="password_tx">
+    <column id="37" parent="13" name="password_tx">
       <Position>3</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="37" parent="12" name="PRIMARY">
+    <column id="38" parent="13" name="role_cd">
+      <Position>4</Position>
+      <DataType>varchar(12)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;user&apos;</DefaultExpression>
+    </column>
+    <key id="39" parent="13" name="PRIMARY">
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>

@@ -24,25 +24,12 @@
     given.
 </p>
 <div>
-    <form action="collection.jsp" class="form-inline">
-        <div class="form-group">
-            <label>User ID</label>
-            <input type="text" class="form-control" id="userID"
-                   name="UserIDName"
-                   placeholder="Enter User ID">
-            <br/>
-            <label>Password</label>
-            <input type="text" class="form-control" id="passWord"
-                   name="PasswordText"
-                   placeholder="Enter Password">
-            <br/>
-            <a href="newUser.jsp">New User</a>
-
-        </div>
-        <button type="submit" name="submit" value="Enter"
-                class="btn btn-primary">Enter</button>
+    <form action="collection.jsp" method="get">
+        <button type="submit">Show Collection</button><br>
     </form>
-
+    <form action="newUser.jsp" method="get">
+        <button type="submit">New User Sign Up</button><br>
+    </form>
 </div>
 <c:import url="termsOfUse.jsp" />
 </div>
