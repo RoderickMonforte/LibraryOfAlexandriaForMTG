@@ -12,3 +12,7 @@
 | 2/06/17 | project setup and work | 3 | |
 | 2/10/17 | presentation 1 composition | 4 | |
 | 2/11/17 | individual project work | 4 | |
+| 2/15/17 | exercise 5 | 2 | |
+| 2/15/17 | individual project | 2 | add security |
+| 2/16/17 | individual project and other task | 4 | mostly done add user MVC|
+| 2/16/17 | individual project and other task | 2 | Completly done add user MVC|

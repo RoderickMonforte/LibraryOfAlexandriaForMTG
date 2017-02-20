@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.*;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(
@@ -31,6 +32,7 @@ public class AddUser extends HttpServlet {
 
         RequestDispatcher dispatcher;
         NewUserEdit edit;
+        HttpSession session = req.getSession(true);
 
         String passwordText = req.getParameter("PasswordText");
         String rePasswordText = req.getParameter("RePasswordText");
@@ -41,7 +43,8 @@ public class AddUser extends HttpServlet {
                 displayNameValue);
 
         if (edit.userAttributeValid()) {
-            addUser(userIDName, displayNameValue, passwordText);
+            session.setAttribute("user", addUser(userIDName, displayNameValue,
+                    passwordText));
             dispatcher = req.getRequestDispatcher("collection.jsp");
             dispatcher.forward(req, resp);
         } else { //redo entering new user info forms
@@ -55,7 +58,7 @@ public class AddUser extends HttpServlet {
     /**
      * This method adds the user
      */
-    private void addUser(String userIDName, String displayNameValue, String
+    private User addUser(String userIDName, String displayNameValue, String
             passwordText) {
         User user = new User(userIDName,displayNameValue,passwordText);
         UserDao userDao = new UserDao();
@@ -65,6 +68,8 @@ public class AddUser extends HttpServlet {
         } catch (Exception exception) {
             log.error("Unable to add user ", exception);
         }
+
+        return user;
     }
 
 }
