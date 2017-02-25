@@ -1,18 +1,25 @@
 package edu.matc.entity;
 
-import io.magicthegathering.javasdk.resource.Card;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 
 /**
  * This is the collection entity associated with the user entity
  * Created by student on 2/12/17.
  */
+@Entity
+@Table(name = "Collection")
 public class Collection {
+
+
     //This is the unique identifier of a collection
     @Id
+    //@GeneratedValue(generator="increment")
+    //@GenericGenerator(name="increment", strategy = "increment")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "collection_id")
+    @Column(name = "collection_id")
     private int collectionId;
 
     //This is the associated user id to this collection from the User entity
@@ -35,6 +42,9 @@ public class Collection {
     @Column(name="price_at")
     private long priceAmount;
 
+    //This is the quantity of the cards in this collection
+    @Column(name="card_qy")
+    private int cardQuantity;
 
     /**
      * Instantiates a new Collection.
@@ -50,15 +60,17 @@ public class Collection {
      * @param descriptionText the description text
      * @param noteText        the note text
      * @param priceAmount     the price amount
+     * @param cardQuantity    the number of cards
      */
     public Collection(String userId, String displayName, String descriptionText,
-                      String noteText, long priceAmount) {
+                      String noteText, long priceAmount, int cardQuantity) {
         this();
         this.userId = userId;
         this.displayName = displayName;
         this.descriptionText = descriptionText;
         this.noteText = noteText;
         this.priceAmount = priceAmount;
+        this.cardQuantity = cardQuantity;
     }
 
     /**
@@ -70,17 +82,30 @@ public class Collection {
      * @param descriptionText the description text
      * @param noteText        the note text
      * @param priceAmount     the price amount
+     * @param cardQuantity    the number of cards
      */
     public Collection(int collectionId, String userId, String displayName,
                       String descriptionText, String noteText,
-                      long priceAmount) {
+                      long priceAmount, int cardQuantity) {
         this();
         this.collectionId = collectionId;
         this.userId = userId;
         this.displayName = displayName;
-        this.descriptionText = descriptionText;
-        this.noteText = noteText;
+
+        if (descriptionText.isEmpty()) {
+            this.descriptionText = null;
+        } else {
+            this.descriptionText = descriptionText;
+        }
+
+        if (noteText.isEmpty()) {
+            this.noteText = null;
+        } else {
+            this.noteText = noteText;
+        }
+
         this.priceAmount = priceAmount;
+        this.cardQuantity = cardQuantity;
     }
 
     /**
@@ -100,7 +125,15 @@ public class Collection {
     public long getPriceAmount() {
         return priceAmount;
     }
-
+    /**
+     * Gets priceAmount.
+     *
+     * @return Value of priceAmount.
+     */
+    public String getPriceAmountString() {
+        DecimalFormat formatter = new DecimalFormat("$#,##0");
+        return formatter.format(priceAmount);
+    }
     /**
      * Gets userId.
      *
@@ -191,6 +224,32 @@ public class Collection {
         return noteText;
     }
 
+    /**
+     * Gets cardQuantity.
+     *
+     * @return Value of cardQuantity.
+     */
+    public int getCardQuantity() {
+        return cardQuantity;
+    }
+    /**
+     * Gets cardQuantity.
+     *
+     * @return Value of cardQuantity.
+     */
+    public String getCardQuantityString() {
+        DecimalFormat formatter = new DecimalFormat("#,##0");
+        return formatter.format(cardQuantity);
+    }
+    /**
+     * Sets new cardQuantity.
+     *
+     * @param cardQuantity New value of cardQuantity.
+     */
+    public void setCardQuantity(int cardQuantity) {
+        this.cardQuantity = cardQuantity;
+    }
+
     @Override
     public String toString() {
         return "Collection{" +
@@ -200,6 +259,7 @@ public class Collection {
                 ", descriptionText='" + descriptionText + '\'' +
                 ", noteText='" + noteText + '\'' +
                 ", priceAmount=" + priceAmount +
+                ", cardQuantity=" + cardQuantity +
                 '}';
     }
 }

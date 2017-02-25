@@ -1,7 +1,12 @@
+/home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/controller/LogOut.java
+/home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/controller/DeleteCollection.java
 /home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/entity/Collection.java
 /home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/persistence/SessionFactoryProvider.java
 /home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/entity/User.java
 /home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/persistence/CollectionDao.java
+/home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/controller/AddCollection.java
+/home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/controller/SetUpCollection.java
+/home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/edit/CollectionEdit.java
 /home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/controller/AddUser.java
 /home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/edit/NewUserEdit.java
 /home/student/Documents/IntelliJProjects/LibraryOfAlexandriaForMTG/src/main/java/edu/matc/persistence/UserDao.java

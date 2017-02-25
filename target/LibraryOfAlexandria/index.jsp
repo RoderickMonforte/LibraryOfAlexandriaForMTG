@@ -16,7 +16,7 @@
 </div>
 <c:import url="menu.jsp" />
 <div id="content">
-<h3>Welcome of Library of Alexandria</h3>
+<h3>Welcome to Library of Alexandria</h3>
 <img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"
      style="height: 250px; width: 200px;" />
 <p>This is a simple MTG cards cataloging application. You can add a
@@ -24,12 +24,22 @@
     given.
 </p>
 <div>
-    <form action="collection.jsp" method="get">
+    <form action="/setUpCollection" method="get">
         <button type="submit">Show Collection</button><br>
     </form>
-    <form action="newUser.jsp" method="get">
-        <button type="submit">New User Sign Up</button><br>
-    </form>
+    <c:choose>
+        <c:when test="${isLoggedIn==true}">
+            <form action="/logOut" method="get">
+                <button type="submit" onclick="">Log Out</button><br>
+            </form>
+        </c:when>
+        <c:otherwise>
+            <form action="newUser.jsp" method="get">
+                <button type="submit">New User Sign Up</button><br>
+            </form>
+        </c:otherwise>
+    </c:choose>
+
 </div>
 <c:import url="termsOfUse.jsp" />
 </div>

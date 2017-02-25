@@ -3,6 +3,7 @@ package edu.matc.persistence;
 import edu.matc.entity.Collection;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +17,12 @@ public class CollectionDao {
      *
      * @return All collections
      */
-    public List<Collection> getAll() throws Exception{
-        List<Collection> collections = new ArrayList<Collection>();
+    public List getAll(String userID) throws Exception{
+        List collections = new ArrayList<Collection>();
 
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
-        collections = session.createCriteria(Collection.class).list();
+        collections = session.createCriteria(Collection.class).add
+                (Restrictions.eq("userId",userID)).list();
 
         session.close();
         return collections;

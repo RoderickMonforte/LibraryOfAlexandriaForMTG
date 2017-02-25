@@ -16,7 +16,7 @@
 </div>
 <c:import url="menu.jsp" />
 <div id="content">
-<h3>Welcome of Library of Alexandria</h3>
+<h3>Welcome to Library of Alexandria</h3>
 <img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"
      style="height: 250px; width: 200px;" />
 <p>This is a simple cataloging application built for storing Magic the

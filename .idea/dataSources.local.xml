@@ -21,5 +21,30 @@
       <user-name>root</user-name>
       <resolve-scope>SAMPLE:</resolve-scope>
     </data-source>
+    <data-source name="LibraryOfAlexandria@127.0.0.1" uuid="f0229ff2-2e7a-4a3d-a2ec-69df96436aed">
+      <database-info product="MySQL" version="5.7.17-0ubuntu0.16.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <resolve-scope>:</resolve-scope>
+      <ssh-properties>
+        <enabled>true</enabled>
+        <proxy-host>52.14.136.34</proxy-host>
+        <proxy-port>22</proxy-port>
+        <secret-storage>master_key</secret-storage>
+        <user>ubuntu</user>
+        <use-password>false</use-password>
+        <private-key-path>$USER_HOME$/Dropbox/Java113/LOAKeyPair.pem</private-key-path>
+      </ssh-properties>
+    </data-source>
+    <data-source name="@localhost" uuid="01b9e5f5-067b-4e51-861f-a22656c7e554">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+      <user-name>root</user-name>
+    </data-source>
   </component>
 </project>

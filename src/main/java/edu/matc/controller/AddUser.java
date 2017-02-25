@@ -42,15 +42,35 @@ public class AddUser extends HttpServlet {
         edit = new NewUserEdit(passwordText, rePasswordText, userIDName,
                 displayNameValue);
 
+        /*
+         If new user passed all edits
+            logged the user
+            set session variables
+            and forward to the collection webpage
+         else forward to New User form again
+         */
         if (edit.userAttributeValid()) {
-            session.setAttribute("user", addUser(userIDName, displayNameValue,
-                    passwordText));
+            User user = addUser(userIDName, displayNameValue, passwordText);
+            loginUser(req, userIDName, passwordText);
+            session.setAttribute("user", user);
+            session.setAttribute("isLoggedIn",true);
             dispatcher = req.getRequestDispatcher("collection.jsp");
             dispatcher.forward(req, resp);
         } else { //redo entering new user info forms
             req.setAttribute("errorMessage",edit.getMessage());
             dispatcher = req.getRequestDispatcher("newUser.jsp");
             dispatcher.forward(req, resp);
+        }
+
+    }
+
+    private void loginUser(HttpServletRequest request, String userID, String
+            passwordText) {
+
+        try {
+            request.login(userID, passwordText);
+        } catch (ServletException e) {
+            log.error("Failed to Login after Add User", e);
         }
 
     }
