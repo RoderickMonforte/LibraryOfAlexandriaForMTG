@@ -24,12 +24,12 @@
     given.
 </p>
 <div>
-    <form action="/setUpCollection" method="get">
+    <form action="setUpCollection" method="get">
         <button type="submit">Show Collection</button><br>
     </form>
     <c:choose>
         <c:when test="${isLoggedIn==true}">
-            <form action="/logOut" method="get">
+            <form action="logOut" method="get">
                 <button type="submit" onclick="">Log Out</button><br>
             </form>
         </c:when>

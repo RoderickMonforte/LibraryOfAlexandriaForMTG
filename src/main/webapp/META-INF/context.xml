@@ -1,0 +1,16 @@
+<Context docBase="LibraryOfAlexandria" path="/LibraryOfAlexandria" reloadable="true">
+    <Realm className="org.apache.catalina.realm.CombinedRealm" >
+
+        <Realm className="org.apache.catalina.realm.JDBCRealm"
+               driverName="com.mysql.jdbc.Driver"
+               connectionURL="jdbc:mysql://localhost:3306/WEEK5?user=tomcat&amp;password=tomcat"
+               userTable="users" userNameCol="user_name" userCredCol="user_pass"
+               userRoleTable="user_roles" roleNameCol="role_name"/>
+
+        <Realm className="org.apache.catalina.realm.JDBCRealm"
+               driverName="com.mysql.jdbc.Driver"
+               connectionURL="jdbc:mysql://localhost:3306/LibraryOfAlexandria?user=tomcat&amp;password=tomcat"
+               userTable="User" userNameCol="user_id" userCredCol="password_tx"
+               userRoleTable="User" roleNameCol="role_cd"/>
+    </Realm>
+</Context>

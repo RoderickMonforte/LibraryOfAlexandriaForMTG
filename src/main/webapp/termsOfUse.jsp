@@ -1,4 +1,5 @@
 <div>
+    <br/>
     <h2>License&nbsp; &amp; Terms of Use<br />
     </h2>
     <p> All templates published and available for free from

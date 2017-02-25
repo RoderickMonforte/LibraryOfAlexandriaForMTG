@@ -31,7 +31,7 @@
 <div id="good">
     <p>${goodMessage}</p>
 </div>
-
+<br/>
 <div>
     <div class="container-fluid">
         <h4>Search Results: </h4>

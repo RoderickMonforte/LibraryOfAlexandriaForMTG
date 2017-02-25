@@ -24,7 +24,9 @@
     given.
 </p>
 <div>
-    <button type="button" >Sign-Up</button>
+    <form action="newUser.jsp" method="get">
+        <button type="submit">New User Sign Up</button><br>
+    </form>
 </div>
 <c:import url="termsOfUse.jsp" />
 </div>
