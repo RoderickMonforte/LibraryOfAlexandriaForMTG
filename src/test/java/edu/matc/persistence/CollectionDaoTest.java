@@ -39,6 +39,14 @@ public class CollectionDaoTest {
         dao.deleteUser(userID);
 
     }
+    @Test
+    public void getOne() throws Exception {
+        Collection collection= collectionDao.getOne(collectionId);
+
+        assertEquals("Collection ID and passed ID are same but are not",
+                collectionId, collection.getCollectionId());
+
+    }
 
     @Test
     public void getAll() throws Exception {
@@ -70,9 +78,7 @@ public class CollectionDaoTest {
     public void updateCollection() throws Exception {
         collection.setCardQuantity(200);
         collectionDao.updateCollection(collection);
-        List<Collection> list = (List<Collection>) collectionDao.getAll
-                (collection.getUserId());
-        int result = list.get(list.size()-1).getCardQuantity();
+        int result = collectionDao.getOne(collectionId).getCardQuantity();
         assertEquals("Should be equal but not ",collection.getCardQuantity(),
                 result);
 

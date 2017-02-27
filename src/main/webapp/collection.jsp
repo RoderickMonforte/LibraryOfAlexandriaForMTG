@@ -5,10 +5,14 @@
 <script type="text/javascript" class="init">
     $(document).ready( function () {
         $('#collectionTable').DataTable({
-            "language": {
-                "decimal": ".",
-                "thousands": ","
-            }
+            "columns": [
+                { "width": "18%" },
+                { "width": "25%" },
+                { "width": "25%" },
+                { "width": "10%" },
+                { "width": "10%" },
+                { "width": "12%" }
+            ]
         });
     } );
 </script>
@@ -51,13 +55,22 @@
                            name="CollectionName"
                            placeholder="new collection name" value=${collectionName}>
                 </td>
-                <td><input type="text" class="form-control" id="descriptionText"
+                <td><!--<input type="text" class="form-control"
+                            id="descriptionText"
                            name="DescriptionText"
-                           placeholder="new description" value=${descriptionText}>
+                           placeholder="new description"
+                           value=${descriptionText}>-->
+                    <textarea rows="2" cols="20" class="form-control"
+                              id="descriptionText" name="DescriptionText"
+                              placeholder="new description">${descriptionText}</textarea>
                 </td>
-                <td><input type="text" class="form-control" id="noteText"
+                <td><!--<input type="text" class="form-control" id="noteText"
                            name="NoteText"
-                           placeholder="note to self" value=${noteText}>
+                           placeholder="note to self" value=${noteText}>-->
+                    <textarea rows="2" cols="20" class="form-control"
+                              id="noteText" name="NoteText"
+                              placeholder="reminder">${noteText}</textarea>
+
                 </td>
                 <td><input type="text" readonly="readonly"
                            class="form-control"
@@ -86,13 +99,12 @@
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle"
                                     type="button"
-                                    data-toggle="dropdown">Action</button>
+                                    data-toggle="dropdown">Go</button>
                                 <span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Card List</a></li>
-                                <li><a href="#">Edit</a></li>
-                                <li><a href="deleteCollection?collectionId=${collection.collectionId}">Delete
-                                </a></li>
+                                <li><a href="updateCollection?mode=preUpdate;${collection.collectionId}">Edit</a></li>
+                                <li><a href="deleteCollection?collectionId=${collection.collectionId}">Delete</a></li>
                             </ul>
                         </div>
                     </td>

@@ -27,6 +27,18 @@ public class CollectionDao {
         session.close();
         return collections;
     }
+    /** Return a one collection
+     *
+     * @return one collections
+     */
+    public Collection getOne(int collectionId) throws Exception{
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Collection collection = (Collection) session.get(Collection.class, collectionId);
+
+        session.close();
+        return collection;
+    }
 
     /**
      * Add collection int.

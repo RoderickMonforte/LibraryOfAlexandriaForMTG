@@ -133,7 +133,25 @@ div#message {
     background-color: yellow;
 }
 div#good {
-  float: left;
-  color : white;
-  background-color: blue;
+    float: left;
+    color : white;
+    background-color: blue;
+}
+button#disquise {
+    background:none;
+    border:none;
+    display: block;
+    padding: 3px 70px 3px 3px;
+    clear: both;
+    font-weight: normal;
+    white-space: nowrap;
+    min-width: 160px;
+}
+button#disquise:hover {
+    text-decoration: none;
+    background-color:#F5F5F5;
+}
+button#disquise:focus {
+    text-decoration: none;
+    background-color:#F5F5F5;
 }

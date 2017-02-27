@@ -43,6 +43,7 @@ public class DeleteCollection extends HttpServlet {
 
         deleteCollection(userID, collectionId, session);
 
+        req.setAttribute("goodMessage","Collection deleted.");
         dispatcher = req.getRequestDispatcher("collection.jsp");
         dispatcher.forward(req, resp);
 
@@ -60,7 +61,7 @@ public class DeleteCollection extends HttpServlet {
             log.error("Delete collection failed collection id =" +
                     collectionId, e);
         }
-        session.setAttribute("goodMessage","Collection deleted.");
+
         session.setAttribute("collections", list);
     }
 }
