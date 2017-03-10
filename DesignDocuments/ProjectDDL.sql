@@ -1,14 +1,14 @@
 CREATE TABLE Card
 (
   Collection_collection_id INT(11) NOT NULL,
-  universal_card_id VARCHAR(32) NOT NULL,
+  universalCardId VARCHAR(32) NOT NULL,
   owned_qy INT(11) NOT NULL,
   wishlist_qy INT(11) NOT NULL,
   note_tx VARCHAR(128),
-  CONSTRAINT `PRIMARY` PRIMARY KEY (Collection_collection_id, universal_card_id),
+  CONSTRAINT `PRIMARY` PRIMARY KEY (Collection_collection_id, universalCardId),
   CONSTRAINT Card_Collection_collection_id_fk FOREIGN KEY (Collection_collection_id) REFERENCES Collection (collection_id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX card_id_UNIQUE ON Card (universal_card_id);
+CREATE UNIQUE INDEX card_id_UNIQUE ON Card (universalCardId);
 CREATE INDEX fk_Card_Collection1_idx ON Card (Collection_collection_id);
 CREATE TABLE Collection
 (

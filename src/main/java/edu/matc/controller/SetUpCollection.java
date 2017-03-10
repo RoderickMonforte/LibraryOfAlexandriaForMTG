@@ -34,8 +34,9 @@ public class SetUpCollection extends HttpServlet {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession(true);
         User user = getUser(req, session);
+        List<Collection> collections = setUp(user.getUserId());
 
-        session.setAttribute("collections", setUp(user.getUserId()));
+        session.setAttribute("collections", collections);
 
         dispatcher = req.getRequestDispatcher("collection.jsp");
         dispatcher.forward(req, resp);
@@ -64,6 +65,7 @@ public class SetUpCollection extends HttpServlet {
 
             try {
                 user = userDao.getUser(userId);
+                Thread.sleep(100);
             } catch (Exception e) {
                 log.error("Error getting User " + userId + " ", e);
             }

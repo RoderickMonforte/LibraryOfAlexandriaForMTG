@@ -23,6 +23,7 @@
     Gathering Cards. This uses web service to get prices and other attributes
     of the card.
 </p>
+    <a href="testOnly.jsp">test only </a>
 
 <c:import url="termsOfUse.jsp" />
 </div>

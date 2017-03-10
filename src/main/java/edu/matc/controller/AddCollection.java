@@ -3,9 +3,7 @@ package edu.matc.controller;
 
 import edu.matc.edit.CollectionEdit;
 import edu.matc.entity.Collection;
-import edu.matc.entity.User;
 import edu.matc.persistence.CollectionDao;
-import edu.matc.persistence.UserDao;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;

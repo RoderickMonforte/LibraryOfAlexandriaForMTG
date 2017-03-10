@@ -1,7 +1,6 @@
 package edu.matc.controller;
 
 
-import edu.matc.edit.CollectionEdit;
 import edu.matc.entity.Collection;
 import edu.matc.persistence.CollectionDao;
 import org.apache.log4j.Logger;

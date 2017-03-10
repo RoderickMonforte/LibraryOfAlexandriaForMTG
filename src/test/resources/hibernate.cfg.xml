@@ -23,6 +23,8 @@
         <!-- List the annotated entity class/es -->
         <mapping class="edu.matc.entity.User"/>
         <mapping class="edu.matc.entity.Collection"/>
+        <mapping class="edu.matc.entity.CardLocal"/>
+        <mapping class="edu.matc.entity.CardItem"/>
 
     </session-factory>
 

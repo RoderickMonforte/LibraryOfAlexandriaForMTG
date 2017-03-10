@@ -3039,46 +3039,57 @@
       <NotNull>1</NotNull>
     </column>
     <column id="678" parent="69" name="Collection_collection_id">
-      <Position>1</Position>
+      <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="679" parent="69" name="universal_card_id">
-      <Position>2</Position>
-      <DataType>varchar(32)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="680" parent="69" name="owned_qy">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="681" parent="69" name="wishlist_qy">
+    <column id="680" parent="69" name="owned_qy">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="682" parent="69" name="note_tx">
+    <column id="681" parent="69" name="wishlist_qy">
       <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="682" parent="69" name="note_tx">
+      <Position>6</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <index id="683" parent="69" name="card_id_UNIQUE">
-      <ColNames>universal_card_id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <index id="684" parent="69" name="fk_Card_Collection1_idx">
+    <column id="683" parent="69" name="price_at">
+      <Position>7</Position>
+      <DataType>decimal(9,2)|0</DataType>
+    </column>
+    <column id="684" parent="69" name="card_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <index id="685" parent="69" name="fk_Card_Collection1_idx">
       <ColNames>Collection_collection_id</ColNames>
     </index>
-    <key id="685" parent="69" name="PRIMARY">
-      <ColNames>Collection_collection_id
-universal_card_id</ColNames>
+    <index id="686" parent="69" name="Card_universal_card_id_Collection_collection_id_uindex">
+      <ColNames>universal_card_id
+Collection_collection_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="687" parent="69" name="PRIMARY">
+      <ColNames>card_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="686" parent="69" name="card_id_UNIQUE">
-      <ColNames>universal_card_id</ColNames>
-      <UnderlyingIndexName>card_id_UNIQUE</UnderlyingIndexName>
+    <key id="688" parent="69" name="Card_universal_card_id_Collection_collection_id_uindex">
+      <ColNames>universal_card_id
+Collection_collection_id</ColNames>
+      <UnderlyingIndexName>Card_universal_card_id_Collection_collection_id_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="687" parent="69" name="Card_fk">
+    <foreign-key id="689" parent="69" name="Card_fk">
       <ColNames>Collection_collection_id</ColNames>
       <RefSchemaName>LibraryOfAlexandria</RefSchemaName>
       <RefTableName>Collection</RefTableName>
@@ -3086,56 +3097,56 @@ universal_card_id</ColNames>
       <OnUpdate>update</OnUpdate>
       <OnDelete>delete</OnDelete>
     </foreign-key>
-    <column id="688" parent="70" name="collection_id">
+    <column id="690" parent="70" name="collection_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="689" parent="70" name="User_user_id">
+    <column id="691" parent="70" name="User_user_id">
       <Position>2</Position>
       <DataType>varchar(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="690" parent="70" name="display_nm">
+    <column id="692" parent="70" name="display_nm">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="691" parent="70" name="description_tx">
+    <column id="693" parent="70" name="description_tx">
       <Position>4</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="692" parent="70" name="note_tx">
+    <column id="694" parent="70" name="note_tx">
       <Position>5</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="693" parent="70" name="price_at">
+    <column id="695" parent="70" name="price_at">
       <Position>6</Position>
       <DataType>decimal(9,2)|0</DataType>
     </column>
-    <column id="694" parent="70" name="card_qy">
+    <column id="696" parent="70" name="card_qy">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <index id="695" parent="70" name="collection_id_UNIQUE">
+    <index id="697" parent="70" name="collection_id_UNIQUE">
       <ColNames>collection_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="696" parent="70" name="fk_Collection_User_idx">
+    <index id="698" parent="70" name="fk_Collection_User_idx">
       <ColNames>User_user_id</ColNames>
     </index>
-    <key id="697" parent="70" name="PRIMARY">
+    <key id="699" parent="70" name="PRIMARY">
       <ColNames>collection_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="698" parent="70" name="collection_id_UNIQUE">
+    <key id="700" parent="70" name="collection_id_UNIQUE">
       <ColNames>collection_id</ColNames>
       <UnderlyingIndexName>collection_id_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="699" parent="70" name="Collection_fk">
+    <foreign-key id="701" parent="70" name="Collection_fk">
       <ColNames>User_user_id</ColNames>
       <RefSchemaName>LibraryOfAlexandria</RefSchemaName>
       <RefTableName>User</RefTableName>
@@ -3143,28 +3154,28 @@ universal_card_id</ColNames>
       <OnUpdate>update</OnUpdate>
       <OnDelete>delete</OnDelete>
     </foreign-key>
-    <column id="700" parent="71" name="user_id">
+    <column id="702" parent="71" name="user_id">
       <Position>1</Position>
       <DataType>varchar(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="701" parent="71" name="display_nm">
+    <column id="703" parent="71" name="display_nm">
       <Position>2</Position>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="702" parent="71" name="password_tx">
+    <column id="704" parent="71" name="password_tx">
       <Position>3</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="703" parent="71" name="role_cd">
+    <column id="705" parent="71" name="role_cd">
       <Position>4</Position>
       <DataType>varchar(12)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;user&apos;</DefaultExpression>
     </column>
-    <key id="704" parent="71" name="PRIMARY">
+    <key id="706" parent="71" name="PRIMARY">
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>

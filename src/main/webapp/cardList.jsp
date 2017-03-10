@@ -37,16 +37,27 @@
             <th>Action</th>
             </thead>
             <tbody>
-            <c:forEach var="card" items="${collections}">
+            <c:forEach var="card" items="${cards}">
                 <tr>
-                    <td>${card.getCardName()}</td>
-                    <td>${card.ownedQty}</td></td>
-                    <td>${card.wishListQty}</td>
-                    <td>${card.wishListQty}</td>
-                    <td>${card.notes}</td>
-                    <td>${card.getPrice()}</td>
+                    <td>${card.name}</td>
+                    <td>${card.ownedQuantityString}</td></td>
+                    <td>${card.wishListString}</td>
+                    <td>${card.noteText}</td>
+                    <td>${card.priceAmountString}</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle"
+                                    type="button"
+                                    data-toggle="dropdown">Go</button>
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Card Detail</a></li>
+                                <li><a href="#">Edit</a></li>
+                                <li><a href="#">Delete</a></li>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
-
 
             </c:forEach>
             </tbody>

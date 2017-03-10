@@ -102,7 +102,7 @@
                                     data-toggle="dropdown">Go</button>
                                 <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Card List</a></li>
+                                <li><a href="setUpCardLocal?collectionId=${collection.collectionId}">Card List</a></li>
                                 <li><a href="updateCollection?mode=preUpdate;${collection.collectionId}">Edit</a></li>
                                 <li><a href="deleteCollection?collectionId=${collection.collectionId}">Delete</a></li>
                             </ul>
