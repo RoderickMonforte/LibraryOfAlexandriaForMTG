@@ -72,7 +72,7 @@ public class CardItemDao {
 
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         cardItem = (List<CardItem>) session.createCriteria(CardItem.class).add
-                (Restrictions.like("name",name)).list();
+                (Restrictions.like("cardName",name)).list();
 
         session.close();
         return cardItem;

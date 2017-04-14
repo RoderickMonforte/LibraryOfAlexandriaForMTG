@@ -31,58 +31,30 @@
     <p>${goodMessage}</p>
 </div>
 <div>
+    <form action="createCardList" method="get">
+        <input type="text" class="form-control" id="cardName"
+               name="CardName"
+               placeholder="enter card name" value=${cardName}>
+        <select id="cardSelect" name="cardChosen">
+        </select>
+        <button type="submit" name="submit" value="Enter"
+                class="btn btn-primary">Search</button>
+    </form>
     <div class="container-fluid">
         <h4>Search Results: </h4>
-        <form action="searchCardForm.jsp" method="get">
-            <button type="submit" name="submit" value="Enter"
-                    class="btn btn-primary">Add</button>
         <table id="userTable" class="display" cellspacing="0" width="100%">
             <thead>
             <th>Name</th>
-            <th>Owned Qty</th>
-            <th>Wish List Qty</th>
-            <th>Notes</th>
-            <th>Price</th>
+            <th>Set</th>
+            <th>Image</th>
             <th>Action</th>
             </thead>
             <tbody>
-            <tr>
-                <td><input type="text" class="form-control" id="cardName"
-                           name="CardName"
-                           placeholder="enter card name" value=${cardName}>
-                </td>
-                <td><input type="text" class="form-control"
-                           id="ownedQuantity"
-                           name="OwnedQuantity" value=${ownedQuantity}
-                           placeholder="#">
-                </td>
-                <td><input type="text" class="form-control"
-                           id="wishList"
-                           name="WishList" value=${wishList}
-                                   placeholder="#">
-                </td>
-                <td><textarea rows="2" cols="20" class="form-control"
-                              id="noteText" name="NoteText"
-                              placeholder="thoughts?">${noteText}</textarea>
-
-                </td>
-                <td><input type="text" readonly="readonly"
-                           class="form-control"
-                           id="priceAmount"
-                           name="PriceAmount"
-                           placeholder="computed">
-                </td>
-                <td><button type="submit" name="submit" value="Enter"
-                            class="btn btn-primary">Add</button>
-                </td>
-            </tr>
             <c:forEach var="card" items="${cards}">
                 <tr>
                     <td>${card.name}</td>
-                    <td>${card.ownedQuantityString}</td></td>
-                    <td>${card.wishListString}</td>
-                    <td>${card.noteText}</td>
-                    <td>${card.priceAmountString}</td>
+                    <td>${card.setName}</td></td>
+                    <td>< <img height="14" width="10" src="${card.imageUrl}"></td>
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle"
@@ -101,7 +73,6 @@
             </c:forEach>
             </tbody>
         </table>
-        </form>
     </div>
 
 
@@ -110,4 +81,30 @@
 </div>
 </div>
 <c:import url="footer.jsp" />
+<script>
+    document.getElementById("cardName").addEventListener('keyup', function() {
+        var query = document.getElementById("cardName").value
+        loadDoc(query);
+    }, false);
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 &amp;&amp; this.status == 200) {
+                obj = JSON.parse(this.responseText);
+                var options = "";
+                var i = 0;
+                for (i = 0; i &lt; obj.cards.length; i++) {
+                    options = options + "&lt;option value=obj.cards[i].multiverseid>" + obj.cards[i].name + "-" + obj.cards[i].setName+"</option>";
+                }
+                document.getElementById("testselect").innerHTML = options;
+
+            }
+        };
+        var a = "https://api.magicthegathering.io/v1/cards?name=" + arguments[0]
+        var b = a.concat(arguments[0])
+        xhttp.open("GET", a, true);
+        xhttp.send();
+    }
+</script>
+
 </body></html>

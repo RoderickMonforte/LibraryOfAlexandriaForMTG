@@ -1,31 +1,50 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: student
-  Date: 3/5/17
-  Time: 6:12 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
-<head>
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var country = ["Australia", "Bangladesh", "Denmark", "Hong Kong", "Indonesia", "Netherlands", "New Zealand", "South Africa"];
-            $("#country").select2({
-                data: country
-            });
-        });
-    </script>
-</head>
 <body>
-<h1>DropDown with Search using jQuery</h1>
-<div>
-    <select id="country" style="width:300px;">
-        <!-- Dropdown List Option -->
+
+<div id="demo">
+    <h1>The XMLHttpRequest Object</h1>
+    <button type="button" onclick="loadDoc('dakkon')">Change Content</button>
+    <input type="text" id="query" />
+    <select id="testselect" name="testChoice" >
     </select>
+    <textarea id="testValue" rows="10" cols="30"> </textarea>
+    <img id="myImage" src="" />
+    <p id="test2"></p>
 </div>
+
+<script>
+    document.getElementById("query").addEventListener('keyup', function() {
+        var query = document.getElementById("query").value
+        loadDoc(query);
+    }, false);
+
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                obj = JSON.parse(this.responseText);
+                var options = "";
+                for (i = 0; i < obj.cards.length; i++) {
+                    options = options + "<option onmouseover=mOver(\""+ obj.cards[i].imageUrl+"\") value="+ JSON.stringify(obj.cards[i]) +">" + obj.cards[i].name + "-" + obj.cards[i].setName+"</option>";
+                }
+                document.getElementById("testselect").innerHTML = options;
+                var tValue = document.getElementById("testselect").value;
+                document.getElementById("testValue").innerHTML = options;
+
+            }
+        };
+        var a = "https://api.magicthegathering.io/v1/cards?name=" + arguments[0]
+        var b = a.concat(arguments[0])
+        xhttp.open("GET", a, true);
+        xhttp.send();
+    }
+
+    function mOver() {
+        document.getElementById("myImage").src = arguments[0].toString();
+        document.getElementById("test2").innerHTML = arguments[0].toString();
+    }
+</script>
+
 </body>
 </html>

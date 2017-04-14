@@ -40,11 +40,5 @@
         <private-key-path>$USER_HOME$/Dropbox/Java113/LOAKeyPair.pem</private-key-path>
       </ssh-properties>
     </data-source>
-    <data-source name="@localhost" uuid="01b9e5f5-067b-4e51-861f-a22656c7e554">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-      <secret-storage>master_key</secret-storage>
-      <first-sync>true</first-sync>
-      <user-name>root</user-name>
-    </data-source>
   </component>
 </project>

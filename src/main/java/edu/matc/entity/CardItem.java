@@ -1,6 +1,6 @@
 package edu.matc.entity;
 
-import io.magicthegathering.api.CardsItem;
+import io.magicthegathering.javasdk.resource.Card;
 
 import javax.persistence.*;
 
@@ -22,7 +22,7 @@ public class CardItem {
 
     //This is the name of the card
     @Column
-    private String name;
+    private String cardName;
 
     //This is the card's artist name
     @Column
@@ -54,7 +54,7 @@ public class CardItem {
 
     //this is the card's set code
     @Column
-    private String set;
+    private String cardSet;
 
     //this is the card's printing list
     @Column
@@ -66,7 +66,7 @@ public class CardItem {
 
     //this is the card's text
     @Column
-    private String text;
+    private String cardText;
 
     //this is the card's flavor text
     @Column
@@ -94,7 +94,7 @@ public class CardItem {
 
     //this is the card's colorless mana cost
     @Column
-    private int cmc;
+    private double cmc;
 
     //this is the card's rarity
     @Column
@@ -106,7 +106,7 @@ public class CardItem {
 
     //this is the card's price
     @Column
-    private long price;
+    private double price;
 
     /**
      * Empty Constructor
@@ -118,7 +118,7 @@ public class CardItem {
      * CardsItem Constructor
      * @param cardsItem
      */
-    public CardItem(CardsItem cardsItem, long price) {
+    public CardItem(Card cardsItem, double price) {
         this();
         this.artist = cardsItem.getArtist();
         this.cmc = cardsItem.getCmc();
@@ -133,7 +133,7 @@ public class CardItem {
         this.layout = cardsItem.getLayout();
         this.manaCost = cardsItem.getManaCost();
         this.multiverseId = cardsItem.getMultiverseid();
-        this.name = cardsItem.getName();
+        this.cardName = cardsItem.getName();
         this.originalText = cardsItem.getOriginalText();
         this.power = cardsItem.getPower();
 
@@ -142,22 +142,37 @@ public class CardItem {
         }
 
         this.rarity = cardsItem.getRarity();
-        this.set = cardsItem.getSet();
+        this.cardSet = cardsItem.getSet();
         this.setName = cardsItem.getSetName();
 
-        for (String supertype: cardsItem.getSupertypes()) {
-            this.supertypes += (supertype + " ");
+        if (cardsItem.getSupertypes() != null ) {
+            this.supertypes = "";
+            for (String supertype : cardsItem.getSupertypes()) {
+                this.supertypes += (supertype + " ");
+            }
+        } else {
+            this.supertypes = " ";
         }
 
-        for (String subtype: cardsItem.getSubtypes()) {
-            this.subtypes += (subtype + " ");
+        if (cardsItem.getSubtypes() != null) {
+            this.supertypes = "";
+            for (String subtype : cardsItem.getSubtypes()) {
+                this.subtypes += (subtype + " ");
+            }
+        } else {
+            this.subtypes = " ";
         }
+        this.cardText = cardsItem.getText();
 
-        this.text = cardsItem.getText();
         this.type = cardsItem.getType();
 
-        for (String typeType:cardsItem.getTypes()) {
-            this.types += (typeType + " ");
+        if (cardsItem.getTypes() != null) {
+            this.supertypes = "";
+            for (String typeType : cardsItem.getTypes()) {
+                this.types += (typeType + " ");
+            }
+        } else {
+            this.types = " ";
         }
 
         this.toughness = cardsItem.getToughness();
@@ -170,7 +185,7 @@ public class CardItem {
      * @param universalCardId;
      * @param cardsItem
      */
-    public CardItem(int universalCardId, CardsItem cardsItem, long price) {
+    public CardItem(int universalCardId, Card cardsItem, double price) {
         this(cardsItem, price);
         this.universalCardId = universalCardId;
     }
@@ -262,8 +277,8 @@ public class CardItem {
      *
      * @return Value of text.
      */
-    public String getText() {
-        return text;
+    public String getCardText() {
+        return cardText;
     }
 
     /**
@@ -316,7 +331,7 @@ public class CardItem {
      *
      * @param cmc New value of cmc.
      */
-    public void setCmc(int cmc) {
+    public void setCmc(double cmc) {
         this.cmc = cmc;
     }
 
@@ -406,8 +421,8 @@ public class CardItem {
      *
      * @param name New value of name.
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setCardName(String name) {
+        this.cardName = name;
     }
 
     /**
@@ -442,8 +457,8 @@ public class CardItem {
      *
      * @param set New value of set.
      */
-    public void setSet(String set) {
-        this.set = set;
+    public void setCardSet(String set) {
+        this.cardSet = set;
     }
 
     /**
@@ -469,8 +484,8 @@ public class CardItem {
      *
      * @param text New value of text.
      */
-    public void setText(String text) {
-        this.text = text;
+    public void setCardText(String text) {
+        this.cardText = text;
     }
 
     /**
@@ -496,8 +511,8 @@ public class CardItem {
      *
      * @return Value of name.
      */
-    public String getName() {
-        return name;
+    public String getCardName() {
+        return cardName;
     }
 
     /**
@@ -523,8 +538,8 @@ public class CardItem {
      *
      * @return Value of set.
      */
-    public String getSet() {
-        return set;
+    public String getCardSet() {
+        return cardSet;
     }
 
     /**
@@ -532,7 +547,7 @@ public class CardItem {
      *
      * @return Value of cmc.
      */
-    public int getCmc() {
+    public double getCmc() {
         return cmc;
     }
 
@@ -595,7 +610,7 @@ public class CardItem {
      *
      * @return Value of price.
      */
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -604,7 +619,7 @@ public class CardItem {
      *
      * @param price New value of price.
      */
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }
