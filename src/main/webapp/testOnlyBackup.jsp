@@ -5,13 +5,15 @@
 <div id="demo">
     <h1>The XMLHttpRequest Object</h1>
     <button type="button" onclick="loadDoc('dakkon')">Change Content</button>
-    <input type="text" id="query" />
+    <input type="text" id="query" data-validation="number"/>
     <select id="testselect" name="testChoice" >
     </select>
     <textarea id="testValue" rows="10" cols="30"> </textarea>
     <img id="myImage" src="" />
     <p id="test2"></p>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 
 <script>
     document.getElementById("query").addEventListener('keyup', function() {

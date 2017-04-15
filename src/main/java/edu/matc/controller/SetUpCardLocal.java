@@ -36,14 +36,15 @@ public class SetUpCardLocal extends HttpServlet {
         int collectionId = Integer.valueOf(req.getParameter("collectionId"));
         Collection collection = getCollection(collectionId);
         List<CardLocal> cardLocals = setUp(collectionId);
+        session.setAttribute("collection", collection);
 
         if (cardLocals.size()==0) {
 
-            dispatcher = req.getRequestDispatcher("searchCardForm.jsp");
+            dispatcher = req.getRequestDispatcher("addCard.jsp");
             dispatcher.forward(req, resp);
+
         } else {
             session.setAttribute("cards", cardLocals);
-            session.setAttribute("collection", collection);
 
             dispatcher = req.getRequestDispatcher("cardList.jsp");
             dispatcher.forward(req, resp);

@@ -34,9 +34,9 @@ public class AddCardLocal extends HttpServlet {
        // CardLocalEdit edit;
         HttpSession session = req.getSession(true);
 
-        String cardName = req.getParameter("CardName");
-        String ownedQuantity = req.getParameter("OwnedQuantity");
-        String wishList = req.getParameter("WishList");
+        String stringId = req.getParameter("TheChoice");
+        String ownedQuantity = req.getParameter("OwnedCount");
+        String wishList = req.getParameter("WishCount");
         String noteText = req.getParameter("NoteText");
         Collection collection = (Collection) session.getAttribute("collection");
 
