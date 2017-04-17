@@ -123,8 +123,12 @@ public class CardItem {
         this.artist = cardsItem.getArtist();
         this.cmc = cardsItem.getCmc();
 
-        for (String color: cardsItem.getColors()) {
-            this.colors += (color + " ");
+        this.colors = "colorless";
+        if (cardsItem.getColors() != null) {
+            this.colors = "";
+            for (String color : cardsItem.getColors()) {
+                this.colors += (color + " ");
+            }
         }
 
         this.flavor = cardsItem.getFlavor();
@@ -137,42 +141,44 @@ public class CardItem {
         this.originalText = cardsItem.getOriginalText();
         this.power = cardsItem.getPower();
 
-        for (String printing: cardsItem.getPrintings()) {
-            this.printings += (printing + " ");
+        this.printings = "no printing";
+        if (cardsItem.getPrintings() != null) {
+            this.printings = "";
+            for (String printing : cardsItem.getPrintings()) {
+                this.printings += (printing + " ");
+            }
         }
 
         this.rarity = cardsItem.getRarity();
         this.cardSet = cardsItem.getSet();
         this.setName = cardsItem.getSetName();
 
+        this.supertypes = "no supertype";
         if (cardsItem.getSupertypes() != null ) {
             this.supertypes = "";
             for (String supertype : cardsItem.getSupertypes()) {
                 this.supertypes += (supertype + " ");
             }
-        } else {
-            this.supertypes = " ";
         }
 
+        this.subtypes = "no subtype";
         if (cardsItem.getSubtypes() != null) {
-            this.supertypes = "";
+            this.subtypes = "";
             for (String subtype : cardsItem.getSubtypes()) {
                 this.subtypes += (subtype + " ");
             }
-        } else {
-            this.subtypes = " ";
         }
+
         this.cardText = cardsItem.getText();
 
         this.type = cardsItem.getType();
 
+        this.types = "no type";
         if (cardsItem.getTypes() != null) {
-            this.supertypes = "";
+            this.types = "";
             for (String typeType : cardsItem.getTypes()) {
                 this.types += (typeType + " ");
             }
-        } else {
-            this.types = " ";
         }
 
         this.toughness = cardsItem.getToughness();

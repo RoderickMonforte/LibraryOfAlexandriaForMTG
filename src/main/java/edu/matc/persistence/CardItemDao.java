@@ -1,6 +1,7 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.CardItem;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -19,14 +20,20 @@ public class CardItemDao {
     private CardItem getCardItem(int id, String option) throws
             Exception{
         CardItem cardItem = null;
+        Criteria criteria = null;
 
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         if (option.equals("multiverseId")) {
-            cardItem = (CardItem) session.createCriteria(CardItem.class).add
-                    (Restrictions.eq("multiverseId",id));
+            criteria = session.createCriteria(CardItem.class);
+            criteria.add(Restrictions.eq("multiverseId", id));
+
+            if (criteria.list().size() > 0) {
+                cardItem = (CardItem) criteria.list().get(0);
+            }
         } else if (option.equals("universalCardId")) {
             cardItem = (CardItem) session.createCriteria(CardItem.class).add
                     (Restrictions.eq("universalCardId",id));
+            cardItem = (CardItem) session.get(CardItem.class, id);
         }
 
         session.close();

@@ -43,7 +43,8 @@ public class CardLocal {
 
     //This is the price of the card in the last price check
     @Column(name = "price_at")
-    private long priceAmount;
+    private double priceAmount;
+
 
     /**
      * Empty Constructor
@@ -62,10 +63,11 @@ public class CardLocal {
      * @param priceAmount
      */
     public CardLocal(int collectionId, int universalCardId, String name, int 
-            ownedQuantity, int wishList, String noteText, long priceAmount) {
+            ownedQuantity, int wishList, String noteText, double priceAmount) {
         this();
         this.collectionId = collectionId;
         this.universalCardId = universalCardId;
+        this.name = name;
         this.ownedQuantity = ownedQuantity;
         this.wishList = wishList;
         this.noteText = noteText;
@@ -84,7 +86,7 @@ public class CardLocal {
      * @param priceAmount
      */
     public CardLocal(int cardId, int collectionId, int universalCardId, 
-            String name, int ownedQuantity, int wishList, String noteText, long priceAmount) {
+            String name, int ownedQuantity, int wishList, String noteText, double priceAmount) {
 
         this(collectionId, universalCardId, name, ownedQuantity, wishList,
                 noteText, priceAmount);
@@ -188,7 +190,7 @@ public class CardLocal {
      *
      * @param priceAmount New value of priceAmount.
      */
-    public void setPriceAmount(long priceAmount) {
+    public void setPriceAmount(double priceAmount) {
         this.priceAmount = priceAmount;
     }
 
@@ -215,11 +217,11 @@ public class CardLocal {
      *
      * @return Value of priceAmount.
      */
-    public long getPriceAmount() {
+    public double getPriceAmount() {
         return priceAmount;
     }
     public String getPriceAmountString() {
-        DecimalFormat formatter = new DecimalFormat("$#,##0");
+        DecimalFormat formatter = new DecimalFormat("$#,##0.00");
         return formatter.format(priceAmount);
     }
     /**
@@ -273,4 +275,5 @@ public class CardLocal {
     public void setName(String name) {
         this.name = name;
     }
+
 }

@@ -1,12 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<c:import url="head.jsp" />
 <script type="text/javascript" class="init">
     $(document).ready( function () {
         $('#userTable').DataTable();
     } );
+
 </script>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<c:import url="head.jsp" />
+
 <body>
 <div id="wrap">
     <div id="header"><br />
@@ -37,24 +39,24 @@
                 <form id="addCardForm" method="get" action="addCardLocal">
                     <div class="form-group">
                         <label for="query">Start Typing Card Name</label>
-                        <input type="text" id="query" class="form-control"/>
+                        <input type="text" id="query" class="form-control" placeholder="Enter name of card"/>
                     </div>
                     <div class="form-group">
                         <label for="buildSelect">Select the actual card to add</label>
-                        <select id="buildSelect" name="TheChoice" value=${theChoice} required >
+                        <select id="buildSelect" name="TheChoice" required>
                         </select>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="ownedCount" >Owned Quantity</label>
-                                <input type="text" id="ownedCount" name="OwnedCount" class="form-control" value=0 data-validation="number"/>
+                                <input type="number" min="0" id="ownedCount" name="OwnedCount" class="form-control" value=0 required/>
                             </div>
                         </div>
                             <div class="col-md-6">
                             <div class="form-group">
                                 <label for="wishCount" >Wish Count</label>
-                                <input type="text" id="wishCount" name="WishCount" class="form-control" value=0 data-validation="number" />
+                                <input type="number" min="0" id="wishCount" name="WishCount" class="form-control" value=0 required/>
                             </div>
                         </div>
                     </div>
@@ -62,8 +64,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label for="noteText" >Note Text</label>
-                                <textarea id="noteText" name="NoteText" class="form-control" rows="2" cols="20" >
-                                    ${noteText}
+                                <textarea id="noteText" name="NoteText" class="form-control" rows="2" cols="20" placeholder="notes about this card" value="">
                                 </textarea>
                             </div>
                         </div>

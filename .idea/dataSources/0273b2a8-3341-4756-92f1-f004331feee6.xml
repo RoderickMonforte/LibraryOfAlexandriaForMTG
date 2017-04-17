@@ -132,7 +132,7 @@ Collection_collection_id</ColNames>
     </column>
     <column id="41" parent="14" name="flavor">
       <Position>15</Position>
-      <DataType>varchar(128)|0</DataType>
+      <DataType>varchar(1024)|0</DataType>
     </column>
     <column id="42" parent="14" name="power">
       <Position>17</Position>
@@ -176,11 +176,11 @@ Collection_collection_id</ColNames>
     </column>
     <column id="52" parent="14" name="cardText">
       <Position>14</Position>
-      <DataType>varchar(128)|0</DataType>
+      <DataType>varchar(1024)|0</DataType>
     </column>
     <column id="53" parent="14" name="originalText">
       <Position>16</Position>
-      <DataType>varchar(128)|0</DataType>
+      <DataType>varchar(1024)|0</DataType>
     </column>
     <index id="54" parent="14" name="CardItem_id_uindex">
       <ColNames>id</ColNames>

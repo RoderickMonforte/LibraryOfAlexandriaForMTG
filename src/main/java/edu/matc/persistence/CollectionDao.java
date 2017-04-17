@@ -84,6 +84,22 @@ public class CollectionDao {
         session.close();
     }
 
+    public void updateCollection(int collectionId, int ownedQuantity, double
+            price) throws Exception {
 
+        Collection collection = getOne(collectionId);
+        int newCardQuantity = collection.getCardQuantity() + ownedQuantity;
+        double newPrice = collection.getPriceAmount() + price;
+        collection.setCardQuantity(newCardQuantity);
+        collection.setPriceAmount(newPrice);
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(collection);
+        transaction.commit();
+
+        session.close();
+    }
 
 }

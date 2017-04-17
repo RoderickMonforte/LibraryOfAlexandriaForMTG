@@ -60,10 +60,7 @@ public class TestServiceClient {
                         "/api/cfb/price.json","cardname=" + cardName, null);
             } catch (URISyntaxException e) {
             }
-/*
-            target = client.target("http://magictcgprices.appspot" +
-                    ".com/api/cfb/price.json?cardname="+ set + " " + cardName);
-*/
+
             request = uri.toASCIIString();
             target = client.target(request);
             try {

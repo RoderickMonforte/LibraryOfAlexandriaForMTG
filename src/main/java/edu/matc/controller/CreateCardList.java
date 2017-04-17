@@ -1,9 +1,5 @@
 package edu.matc.controller;
 
-import edu.matc.entity.CardItem;
-import edu.matc.persistence.CardItemDao;
-import io.magicthegathering.javasdk.api.CardAPI;
-import io.magicthegathering.javasdk.resource.Card;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -13,15 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(
         urlPatterns = {"/createCardList"}
@@ -43,14 +31,14 @@ public class CreateCardList extends HttpServlet {
 
         String cardName = req.getParameter("CardName");
 
-        session.setAttribute("cards" ,getCardFromWeb(cardName));
+//        session.setAttribute("cards" ,getCardFromWeb(cardName));
 
         dispatcher = req.getRequestDispatcher("cardList.jsp");
         dispatcher.forward(req, resp);
     }
-
+/*
     private List<CardItem> getCardFromWeb(String cardName) {
-/*        Client client = ClientBuilder.newClient();
+        Client client = ClientBuilder.newClient();
         WebTarget target = null;
         String response = null;
         ObjectMapper mapper = new ObjectMapper();
@@ -68,6 +56,7 @@ public class CreateCardList extends HttpServlet {
         } catch (IOException e) {
             log.error("Error reading response from web service " + e);
         }*/
+/*
         ArrayList<String> filter = new ArrayList<>();
         List<CardItem> cards = null;
         filter.add("name="+cardName);
@@ -79,7 +68,9 @@ public class CreateCardList extends HttpServlet {
         }
         return cards;
     }
+*/
 
+/*
     private CardItem addNewCardItem(Card item) {
         CardItem cardItem = new CardItem(item, getPrice(item.getName(), item
                 .getSetName()));
@@ -93,48 +84,8 @@ public class CreateCardList extends HttpServlet {
 
         return cardItem;
     }
-
-    private double getPrice(String cardName, String setName) {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = null;
-        String response = null;
-        String set = "";
-        String request = null;
-        URI uri = null;
-        String[] result = setName.split("\\s+");
-        double price = 0.0;
-
-        for (int i = result.length; i >= 0; i--) {
-
-            if (i < result.length) {
-                set = result[i] + " " + set;
-            }
-
-            try {
-                uri = new URI("http","magictcgprices.appspot.com",
-                        "/api/cfb/price.json","cardname=" + set +
-                        cardName, null);
-                request = uri.toASCIIString();
-                target = client.target(request);
-                response = target.request(MediaType.APPLICATION_JSON).get(String.class);
-
-            } catch (URISyntaxException e) {
-                log.error("Error building URI " + e.getMessage());
-            } catch (Exception e) {
-                continue;
-            }
-/*
-            target = client.target("http://magictcgprices.appspot" +
-                    ".com/api/cfb/price.json?cardname="+ set + " " + cardName);
 */
 
-            if (!response.equals("[\"\"]")) {
-                price = Double.valueOf(response.substring(3,(response.length()
-                        - 2)));
-            }
-        }
-        return price;
-    }
 
 
 }

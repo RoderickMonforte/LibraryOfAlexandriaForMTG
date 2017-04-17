@@ -1,7 +1,5 @@
 package edu.matc.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.text.DecimalFormat;
 
@@ -40,7 +38,7 @@ public class Collection {
 
     //This is the price of the collection on last refresh
     @Column(name="price_at")
-    private long priceAmount;
+    private double priceAmount;
 
     //This is the quantity of the cards in this collection
     @Column(name="card_qy")
@@ -122,7 +120,7 @@ public class Collection {
      *
      * @return Value of priceAmount.
      */
-    public long getPriceAmount() {
+    public double getPriceAmount() {
         return priceAmount;
     }
     /**
@@ -184,7 +182,7 @@ public class Collection {
      *
      * @param priceAmount New value of priceAmount.
      */
-    public void setPriceAmount(long priceAmount) {
+    public void setPriceAmount(double priceAmount) {
         this.priceAmount = priceAmount;
     }
 
