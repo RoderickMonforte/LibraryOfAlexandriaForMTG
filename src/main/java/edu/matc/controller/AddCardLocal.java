@@ -82,8 +82,8 @@ public class AddCardLocal extends HttpServlet {
         CollectionDao daoSet = new CollectionDao();
         Double totalPrice = (double) ownedQuantity * cardItem.getPrice();
         CardLocal cardLocal = new CardLocal(collectionId, cardItem
-                .getUniversalCardId(), cardItem.getCardName(), ownedQuantity,
-                wishList, noteText, totalPrice);
+                .getUniversalCardId(), ownedQuantity,
+                wishList, noteText, totalPrice, cardItem);
 
         try {
             int id = dao.addCardLocal(cardLocal);

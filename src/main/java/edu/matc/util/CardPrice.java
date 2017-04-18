@@ -28,6 +28,7 @@ public class CardPrice {
         String request = null;
         URI uri = null;
         String[] result = setName.split("\\s+");
+        String priceString = null;
         double price = 0.0;
 
         for (int i = result.length; i >= 0; i--) {
@@ -44,7 +45,9 @@ public class CardPrice {
             response = target.request(MediaType.APPLICATION_JSON).get(String.class);
 
             if (!response.equals("[\"\"]")) {
-                price = Double.valueOf(response.substring(3,(response.length()- 2)));
+                priceString = response.substring(3,(response.length()-2))
+                        .replace(",","").toString();
+                price = Double.valueOf(priceString);
             }
         }
         return price;

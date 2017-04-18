@@ -23,10 +23,6 @@ public class CardLocal {
     @Column(name = "universal_card_id")
     private int universalCardId;
 
-    //This is the name of the card
-    @Column
-    private String name;
-    
     //This is the number of instance of this card owned by the user for this
     // collection.
     @Column(name = "owned_qy")
@@ -45,6 +41,10 @@ public class CardLocal {
     @Column(name = "price_at")
     private double priceAmount;
 
+    @ManyToOne
+    @JoinColumn(name = "universal_card_id", referencedColumnName =
+            "universal_card_id", nullable = false, insertable = false, updatable = false)
+    private CardItem cardItemById;
 
     /**
      * Empty Constructor
@@ -56,22 +56,22 @@ public class CardLocal {
      * Constructor without the primary key
      * @param collectionId
      * @param universalCardId
-     * @param name
      * @param ownedQuantity
      * @param wishList
      * @param noteText
      * @param priceAmount
+     * @param cardItemById
      */
-    public CardLocal(int collectionId, int universalCardId, String name, int 
-            ownedQuantity, int wishList, String noteText, double priceAmount) {
+    public CardLocal(int collectionId, int universalCardId, int
+            ownedQuantity, int wishList, String noteText, double priceAmount, CardItem cardItemById) {
         this();
         this.collectionId = collectionId;
         this.universalCardId = universalCardId;
-        this.name = name;
         this.ownedQuantity = ownedQuantity;
         this.wishList = wishList;
         this.noteText = noteText;
         this.priceAmount = priceAmount;
+        this.cardItemById = cardItemById;
     }
 
     /**
@@ -79,17 +79,17 @@ public class CardLocal {
      * @param cardId
      * @param collectionId
      * @param universalCardId
-     * @param name
      * @param ownedQuantity
      * @param wishList
      * @param noteText
      * @param priceAmount
+     * @param cardItemById
      */
-    public CardLocal(int cardId, int collectionId, int universalCardId, 
-            String name, int ownedQuantity, int wishList, String noteText, double priceAmount) {
+    public CardLocal(int cardId, int collectionId, int universalCardId,
+                     int ownedQuantity, int wishList, String noteText, double priceAmount, CardItem cardItemById) {
 
-        this(collectionId, universalCardId, name, ownedQuantity, wishList,
-                noteText, priceAmount);
+        this(collectionId, universalCardId, ownedQuantity, wishList,
+                noteText, priceAmount, cardItemById);
 
         this.cardId = cardId;
     }
@@ -259,21 +259,20 @@ public class CardLocal {
     }
 
     /**
-     * Gets name.
+     * Sets new cardItemById.
      *
-     * @return Value of name.
+     * @param cardItemById New value of cardItemById.
      */
-    public String getName() {
-        return name;
+    public void setCardItemById(CardItem cardItemById) {
+        this.cardItemById = cardItemById;
     }
 
     /**
-     * Sets new name.
+     * Gets cardItemById.
      *
-     * @param name New value of name.
+     * @return Value of cardItemById.
      */
-    public void setName(String name) {
-        this.name = name;
+    public CardItem getCardItemById() {
+        return cardItemById;
     }
-
 }

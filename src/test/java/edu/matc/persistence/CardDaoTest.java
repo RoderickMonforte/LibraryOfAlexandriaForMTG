@@ -30,8 +30,8 @@ public class CardDaoTest {
         String name = cardItem.getCardName();
 
         CardLocal cardLocal = new CardLocal(1, cardItem
-                .getUniversalCardId(), name, 1,
-                1, "test", cardItem.getPrice());
+                .getUniversalCardId(), 1,
+                1, "test", cardItem.getPrice(), cardItem);
 
         int id = dao.addCardLocal(cardLocal);
         cardLocal.setUniversalCardId(id);

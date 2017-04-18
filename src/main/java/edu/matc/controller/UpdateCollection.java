@@ -94,7 +94,8 @@ public class UpdateCollection extends HttpServlet {
         collection.setDescriptionText(req.getParameter("UpdateDescription"));
         collection.setNoteText(req.getParameter("UpdateNote"));
         collection.setCardQuantity(Integer.valueOf(req.getParameter("UpdateQuantity")));
-        collection.setPriceAmount(Long.valueOf(req.getParameter("UpdateAmount")));
+        collection.setPriceAmount(Double.valueOf(req.getParameter
+                ("UpdateAmount")));
 
         try {
             dao.updateCollection(collection);

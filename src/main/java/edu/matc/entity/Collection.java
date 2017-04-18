@@ -129,7 +129,7 @@ public class Collection {
      * @return Value of priceAmount.
      */
     public String getPriceAmountString() {
-        DecimalFormat formatter = new DecimalFormat("$#,##0");
+        DecimalFormat formatter = new DecimalFormat("$#,##0.00");
         return formatter.format(priceAmount);
     }
     /**
