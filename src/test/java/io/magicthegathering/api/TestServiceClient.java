@@ -22,7 +22,7 @@ public class TestServiceClient {
         String request = null;
         String priceString = null;
         URI uri = null;
-        String cardName = "Time Walk"; //"avacyn"; //
+        String cardName = "Black Lotus"; //"avacyn"; //
         double price =  0.0;
 
             try {

@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(
@@ -50,7 +49,7 @@ public class AddCardLocal extends HttpServlet {
         String noteText = req.getParameter("NoteText").trim();
         Collection collection = (Collection) session.getAttribute("collection");
         CardItem cardItem = getCardItem(Integer.valueOf(stringId));
-        List<CardLocal> cardLocals = new ArrayList<CardLocal>();
+        List<CardLocal> cardLocals = getAllCardsInCollection(collection.getCollectionId());
 
         cardLocals.add(addCardToCollection(cardItem, collection
                 .getCollectionId(), ownedQuantity, wishList, noteText));
@@ -64,6 +63,25 @@ public class AddCardLocal extends HttpServlet {
             dispatcher = req.getRequestDispatcher("cardList.jsp");
             dispatcher.forward(req, resp);
 
+    }
+
+    /**
+     * Gets all cards in a collection
+     * @param collectionId
+     * @return
+     */
+    private List<CardLocal> getAllCardsInCollection(int collectionId) {
+        CardDao dao = new CardDao();
+        List<CardLocal> lists = null;
+
+        try {
+            lists = dao.getAll(collectionId);
+        } catch (Exception e) {
+            log.error("Error getting cards in this collection "+ collectionId
+                    + " " + e.getMessage());
+        }
+
+        return lists;
     }
 
     /**
