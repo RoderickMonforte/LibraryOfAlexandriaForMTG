@@ -1,5 +1,6 @@
 package io.magicthegathering.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
 import javax.ws.rs.client.Client;
@@ -8,6 +9,9 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class TestServiceClient {
@@ -45,5 +49,32 @@ public class TestServiceClient {
                 price = Double.valueOf(priceString);
             }
     }
+    @Test
+    public void testGoogleApiJSON() throws Exception {
+        Client client = ClientBuilder.newClient();
+        WebTarget target = null;
+        String response = null;
+        ObjectMapper mapper = new ObjectMapper();
+        Result result = null;
+        List<Card> lists = null;
 
+        target = client.target("https://api.magicthegathering" +
+                ".io/v1/cards/409741");
+        response = target.request(MediaType.APPLICATION_JSON).get(String.class);
+
+//        assertEquals("=", " ", response);
+        result = mapper.readValue(response, Result.class);
+        Card card= result.getCard();
+/*
+            for (CardsItem item : lists) {
+                new CardListDao().addCardList(new CardList(item.getMultiverseid()
+                        , item.getName()));
+            }*/
+
+        assertEquals("James Ryman", card.getArtist());
+        // CardList cardList = new CardList(item.getMultiverseid(), item.getName());
+        // int id = new CardListDao().addCardList(cardList);
+        //assertEquals(9, item.getMultiverseid());
+
+    }
 }

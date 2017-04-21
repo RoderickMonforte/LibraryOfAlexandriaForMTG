@@ -7,9 +7,8 @@ import edu.matc.entity.Collection;
 import edu.matc.persistence.CardDao;
 import edu.matc.persistence.CardItemDao;
 import edu.matc.persistence.CollectionDao;
-import edu.matc.util.CardPrice;
-import io.magicthegathering.javasdk.api.CardAPI;
-import io.magicthegathering.javasdk.resource.Card;
+import edu.matc.util.GetWeb;
+import io.magicthegathering.api.Card;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 
@@ -123,13 +122,14 @@ public class AddCardLocal extends HttpServlet {
      * @return
      */
     private CardItem addCardItem(int multiverseId) {
-        Card card = CardAPI.getCard(multiverseId);
         CardItemDao dao = new CardItemDao();
         CardItem cardItem = null;
+        Card card = null;
         int universeId = 0;
 
         try {
-            cardItem = new CardItem(card, CardPrice.getPrice(card.getName
+            card = GetWeb.getCard(multiverseId);
+            cardItem = new CardItem(card, GetWeb.getPrice(card.getName
                     (), card.getSetName()));
             universeId = dao.addCardItem(cardItem);
             cardItem.setUniversalCardId(universeId);

@@ -2,9 +2,8 @@ package edu.matc.persistence;
 
 import edu.matc.entity.CardItem;
 import edu.matc.entity.CardLocal;
-import edu.matc.util.CardPrice;
-import io.magicthegathering.javasdk.api.CardAPI;
-import io.magicthegathering.javasdk.resource.Card;
+import edu.matc.util.GetWeb;
+import io.magicthegathering.api.Card;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,12 +38,12 @@ public class CardDaoTest {
     }
 
     public CardItem addCardItem() throws Exception {
-        Card card = CardAPI.getCard(1);
+        Card card = GetWeb.getCard(1);
         CardItemDao dao = new CardItemDao();
         CardItem cardItem = null;
         int universeId = 0;
 
-        cardItem = new CardItem(card, CardPrice.getPrice(card.getName(), card.getSetName()));
+        cardItem = new CardItem(card, GetWeb.getPrice(card.getName(), card.getSetName()));
         universeId = dao.addCardItem(cardItem);
         cardItem.setUniversalCardId(universeId);
 

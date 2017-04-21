@@ -1,6 +1,7 @@
 package edu.matc.entity;
 
-import io.magicthegathering.javasdk.resource.Card;
+
+import io.magicthegathering.api.Card;
 
 import javax.persistence.*;
 
