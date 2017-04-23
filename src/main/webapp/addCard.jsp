@@ -39,7 +39,7 @@
                 <form id="addCardForm" method="get" action="addCardLocal">
                     <div class="form-group">
                         <label for="query">Start Typing Card Name</label>
-                        <input type="text" id="query" class="form-control" placeholder="Enter name of card"/>
+                        <input type="text" id="query" class="form-control" placeholder="Enter name of card" autocomplete="off"/>
                     </div>
                     <div class="form-group">
                         <label for="buildSelect">Select the actual card to add</label>

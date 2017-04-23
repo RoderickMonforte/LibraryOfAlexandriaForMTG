@@ -47,3 +47,12 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+/remember
+.idea/dataSources/0273b2a8-3341-4756-92f1-f004331feee6/_src_/
+.idea/dataSources/0273b2a8-3341-4756-92f1-f004331feee6/_staging_/
+.idea/dataSources/bd9fa95c-999d-40da-b889-9537cde991f0/_src_/
+.idea/dataSources/bd9fa95c-999d-40da-b889-9537cde991f0/_staging_/
+.idea/dataSources/f0229ff2-2e7a-4a3d-a2ec-69df96436aed/_src_/
+.idea/dataSources/f0229ff2-2e7a-4a3d-a2ec-69df96436aed/_staging_/
+.idea/inspectionProfiles/
+remember

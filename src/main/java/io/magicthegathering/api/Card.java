@@ -95,6 +95,14 @@ public class Card{
 	@JsonProperty("rarity")
 	private String rarity;
 
+	@JsonProperty("reserved")
+    private boolean reserved;
+
+	@JsonProperty("loyalty")
+    private int loyalty;
+
+
+
 	public void setColorIdentity(List<String> colorIdentity){
 		this.colorIdentity = colorIdentity;
 	}
@@ -361,4 +369,22 @@ public class Card{
 			",rarity = '" + rarity + '\'' + 
 			"}";
 		}
+
+    /**
+     * Sets new reserved.
+     *
+     * @param reserved New value of reserved.
+     */
+    public void setReserved(boolean reserved) {
+        this.reserved = reserved;
+    }
+
+    /**
+     * Gets reserved.
+     *
+     * @return Value of reserved.
+     */
+    public boolean isReserved() {
+        return reserved;
+    }
 }

@@ -32,19 +32,9 @@
     <%--second row for messages--%>
     <div class="row">
         <div class="col-*-*">
-            <div class="container-fluid">
-                <h2>Alerts</h2>
-                <div class="alert alert-success">
-                    ${goodMessage}
-                </div>
-                <div class="alert alert-info">
-                   ${infoMessage}
-                </div>
-                <div class="alert alert-warning">
-                    ${warningMessage}
-                </div>
-                <div class="alert alert-danger">
-                    ${errorMessage}
+            <div class="container-fluid" ${alert.hidden}>
+                <div class="${alert.type}">
+                    ${alert.message}
                 </div>
             </div>
         </div>
@@ -62,6 +52,7 @@
                 <form action="addCard.jsp" method="get">
                     <button type="submit" name="submit" value="Enter"
                             class="btn btn-primary">Add new card</button>
+                    <br/>
                 <table id="userTable" class="display" cellspacing="0" width="100%">
                     <thead>
                     <th>Name</th>
@@ -73,7 +64,8 @@
                     </thead>
                     <tbody>
                     <c:forEach var="card" items="${cards}">
-                        <tr onmouseover="{document.getElementById('cardImage').src = '${card.cardItemById.imageUrl}'; return false;}">
+                        <tr onmouseover="{document.getElementById('cardImage').src = '${card.cardItemById.imageUrl}';
+                        return false;}">
                             <td>${card.cardItemById.cardName}</td>
                             <td>${card.ownedQuantityString}</td></td>
                             <td>${card.wishListString}</td>
@@ -86,8 +78,7 @@
                                             data-toggle="dropdown">Go</button>
                                     <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Card Detail</a></li>
-                                        <li><a href="#">Edit</a></li>
+                                        <li><a href="updateCard?cardId=${card.cardId}">View/Edit</a></li>
                                         <li><a href="#">Delete</a></li>
                                     </ul>
                                 </div>

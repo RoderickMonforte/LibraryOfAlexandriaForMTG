@@ -16,31 +16,83 @@
 </div>
 <c:import url="menu.jsp" />
 <div id="content">
-<h3>${card.getCardName()}</h3>
-<img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy right"
-     style="height: 250px; width: 200px;" />
-<div>
-    <div class="container-fluid">
-        <h2>Search Results: </h2>
-        <table id="userTable" class="display" cellspacing="0" width="50%">
-            <thead>
-            <th>Attribute</th>
-            <th>Value</th>
-            </thead>
-            <tbody>
-            <c:forEach var="card" items="${collections}">
-                <tr>
-                    <td>${cardDetail.getFieldLabel()}</td>
-                    <td>${cardDetail.getFieldValue()}</td>
-                </tr>
+    <div class="row">
+        <div class="col-*-*">
+            <h3>${card.cardItem.getCardName()}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>${card.cardItem.getCardName()}</h3>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Artist</strong>
+                </div>
+                <div class="col-md-4">
+                    <p>${card.cardItem.getArtist()}</p>
+                </div>
 
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Rarity</strong>
+                </div>
+                <div class="col-md-4">
+                    <p>${card.cardItem.getRarity()}</p>
+                </div>
 
-            </c:forEach>
-            </tbody>
-        </table>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Type</strong>
+                </div>
+                <div class="col-md-4">
+                    <p>${card.cardItem.getType()}</p>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Set Name</strong>
+                </div>
+                <div class="col-md-4">
+                    <p>${card.cardItem.getSetName()}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Mana Cost</strong>
+                </div>
+                <div class="col-md-4">
+                    <p>${card.cardItem.getManaCost()}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Layout</strong>
+                </div>
+                <div class="col-md-4">
+                    <p>${card.cardItem.getLayout()}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Price</strong>
+                </div>
+                <div class="col-md-4">
+                    <p>${card.cardItem.getPriceString()}</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-</div>
+    <img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy right"
+     style="height: 500px; width: 400px;" />
+
 <c:import url="termsOfUse.jsp" />
 </div>
 </div>

@@ -19,13 +19,13 @@ import java.util.List;
  * The type Delete collection.
  */
 @WebServlet(
-        urlPatterns = {"/updateCollection"}
+        urlPatterns = {"/updateCard"}
 )
 /**
  * This is the controller for adding new user
  * Created by student on 2/18/17.
  */
-public class UpdateCollection extends HttpServlet {
+public class UpdateCard extends HttpServlet {
 
     private final Logger log = Logger.getLogger(this.getClass());
 
@@ -41,11 +41,9 @@ public class UpdateCollection extends HttpServlet {
 
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession(true);
+
         String userID = req.getRemoteUser();
-        //String test = req.getParameter("collectionId");
-        String[] parameters = req.getParameter("mode").split(";");
-        String mode = parameters[0];
-        int collectionId = Integer.valueOf(parameters[1]);
+        int cardId = Integer.valueOf(req.getParameter("cardId"));
 
         String target = process(req, session, mode, userID, collectionId);
 
@@ -54,31 +52,6 @@ public class UpdateCollection extends HttpServlet {
 
     }
 
-
-    /**
-     * @param req
-     * @param session
-     * @param mode
-     * @param id
-     * @return
-     */
-    private String process(HttpServletRequest req, HttpSession session,
-            String mode, String userID, int id) {
-        String target = null;
-
-        if (mode.equals("preUpdate")) {
-            session.setAttribute("updateId",id);
-            target = "updateCollection.jsp";
-
-        } else if (mode.equals("updateReady")) {
-            updateCollection(req, session,userID, id);
-            target = "collection.jsp";
-        } else {
-            target = "collection.jsp";
-        }
-
-        return target;
-    }
 
     /**
      * @param req

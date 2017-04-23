@@ -4,6 +4,7 @@ package edu.matc.entity;
 import io.magicthegathering.api.Card;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 
 /**
  * Created by student on 3/4/17.
@@ -629,4 +630,9 @@ public class CardItem {
     public void setPrice(double price) {
         this.price = price;
     }
+    public String getPriceString() {
+        DecimalFormat formatter = new DecimalFormat("$#,##0.00");
+        return formatter.format(price);
+    }
+
 }

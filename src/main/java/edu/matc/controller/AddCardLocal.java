@@ -7,6 +7,7 @@ import edu.matc.entity.Collection;
 import edu.matc.persistence.CardDao;
 import edu.matc.persistence.CardItemDao;
 import edu.matc.persistence.CollectionDao;
+import edu.matc.util.Alert;
 import edu.matc.util.GetWeb;
 import io.magicthegathering.api.Card;
 import org.apache.log4j.Logger;
@@ -33,13 +34,14 @@ import java.util.List;
 public class AddCardLocal extends HttpServlet {
 
     private final Logger log = Logger.getLogger(this.getClass());
+    private Alert alert = new Alert();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
         RequestDispatcher dispatcher;
-       // CardLocalEdit edit;
+        alert.success("New card added");
         HttpSession session = req.getSession(true);
 
         String stringId = req.getParameter("TheChoice");
@@ -50,14 +52,15 @@ public class AddCardLocal extends HttpServlet {
         CardItem cardItem = getCardItem(Integer.valueOf(stringId));
         List<CardLocal> cardLocals = getAllCardsInCollection(collection.getCollectionId());
 
-        cardLocals.add(addCardToCollection(cardItem, collection
-                .getCollectionId(), ownedQuantity, wishList, noteText));
-
+        if (alert.goOn()) {
+            cardLocals.add(addCardToCollection(cardItem, collection
+                    .getCollectionId(), ownedQuantity, wishList, noteText));
+        }
 
         session.setAttribute("collection", collection);
         session.setAttribute("cards", cardLocals);
 
-        req.setAttribute("goodMessage", "New card added.");
+        req.setAttribute("alert", alert);
 
             dispatcher = req.getRequestDispatcher("cardList.jsp");
             dispatcher.forward(req, resp);
@@ -76,8 +79,10 @@ public class AddCardLocal extends HttpServlet {
         try {
             lists = dao.getAll(collectionId);
         } catch (Exception e) {
-            log.error("Error getting cards in this collection "+ collectionId
-                    + " " + e.getMessage());
+            String errorMessage = "Error getting cards in this collection "+ collectionId
+                    + " " + e.getMessage();
+            log.error(errorMessage);
+            alert.error(errorMessage);
         }
 
         return lists;
@@ -107,9 +112,13 @@ public class AddCardLocal extends HttpServlet {
             cardLocal.setUniversalCardId(id);
             daoSet.updateCollection(collectionId, ownedQuantity, totalPrice);
         } catch (SQLException err) {
-            log.info("Card already in the collection");
+            String message = "Card already in the collection";
+            log.info(message);
+            alert.info(message);
         } catch (Exception e) {
-            log.error("Error adding card to collection " + e.getMessage());
+            String message ="Error adding card to collection " + e.getMessage();
+            log.error(message);
+            alert.error(message);
         }
 
         return cardLocal;
@@ -134,10 +143,14 @@ public class AddCardLocal extends HttpServlet {
             universeId = dao.addCardItem(cardItem);
             cardItem.setUniversalCardId(universeId);
         } catch (HibernateException h) {
-            log.error("Error adding card to cardItem" + h.getMessage());
+            String message = "Error adding card to cardItem" + h.getMessage();
+            log.error(message);
+            alert.error(message);
         } catch (Exception e) {
-            log.error("Error getting price of card " + card.getName() + " " +
-                    e.getMessage());
+            String message = "Error getting price of card " + card.getName() + " " +
+                    e.getMessage();
+            log.error(message);
+            alert.error(message);
         }
 
         return cardItem;
@@ -156,10 +169,16 @@ public class AddCardLocal extends HttpServlet {
         try {
             cardItem = dao.getCardItemMultiverseId(multiverseId);
         } catch (SQLException err) {
-            log.error("Error adding card to cardItem" + err.getMessage());
+            String message = "Error adding card to cardItem" + err.getMessage
+                    ();
+            log.error(message);
+            alert.error(message);
+
         } catch (Exception e) {
-            log.error("Error getting price of card " + cardItem.getCardName() +
-                    " " + e.getMessage());
+            String message = "Error getting price of card " + cardItem.getCardName() +
+                    " " + e.getMessage();
+            log.error(message);
+            alert.error(message);
         }
 
         if (cardItem == null) {
