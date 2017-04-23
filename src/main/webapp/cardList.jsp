@@ -78,7 +78,7 @@
                                             data-toggle="dropdown">Go</button>
                                     <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="updateCard?cardId=${card.cardId}">View/Edit</a></li>
+                                        <li><a href="setUpCard?cardId=${card.cardId}">View/Edit</a></li>
                                         <li><a href="#">Delete</a></li>
                                     </ul>
                                 </div>

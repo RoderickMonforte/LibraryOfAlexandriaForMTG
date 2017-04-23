@@ -16,14 +16,28 @@
 </div>
 <c:import url="menu.jsp" />
 <div id="content">
+    <%--first row heading card name--%>
     <div class="row">
         <div class="col-*-*">
-            <h3>${card.cardItem.getCardName()}</h3>
+            <h3>${collection.displayName}</h3> <br>
+            <h2>${card.cardItemById.cardName}</h2>
         </div>
     </div>
+    <%--second row for messages--%>
+    <div class="row">
+        <div class="col-*-*">
+            <div class="container-fluid" ${alert.hidden}>
+                <div class="${alert.type}">
+                    ${alert.message}
+                </div>
+            </div>
+        </div>
+    </div>
+    <%--third row details--%>
     <div class="row">
         <div class="col-md-6">
-            <h3>${card.cardItem.getCardName()}</h3>
+            <img src="${card.cardItemById.imageUrl}" alt="${card.cardItemById.cardName}" class="fancy right"
+                 style="height: 400px; width: 320px;" />
         </div>
         <div class="col-md-6">
             <div class="row">
@@ -31,7 +45,7 @@
                     <strong>Artist</strong>
                 </div>
                 <div class="col-md-4">
-                    <p>${card.cardItem.getArtist()}</p>
+                    <p>${card.cardItemById.getArtist()}</p>
                 </div>
 
             </div>
@@ -40,7 +54,7 @@
                     <strong>Rarity</strong>
                 </div>
                 <div class="col-md-4">
-                    <p>${card.cardItem.getRarity()}</p>
+                    <p>${card.cardItemById.getRarity()}</p>
                 </div>
 
             </div>
@@ -49,7 +63,7 @@
                     <strong>Type</strong>
                 </div>
                 <div class="col-md-4">
-                    <p>${card.cardItem.getType()}</p>
+                    <p>${card.cardItemById.getType()}</p>
                 </div>
 
             </div>
@@ -59,7 +73,7 @@
                     <strong>Set Name</strong>
                 </div>
                 <div class="col-md-4">
-                    <p>${card.cardItem.getSetName()}</p>
+                    <p>${card.cardItemById.getSetName()}</p>
                 </div>
             </div>
             <div class="row">
@@ -67,7 +81,7 @@
                     <strong>Mana Cost</strong>
                 </div>
                 <div class="col-md-4">
-                    <p>${card.cardItem.getManaCost()}</p>
+                    <p>${card.cardItemById.getManaCost()}</p>
                 </div>
             </div>
             <div class="row">
@@ -75,7 +89,7 @@
                     <strong>Layout</strong>
                 </div>
                 <div class="col-md-4">
-                    <p>${card.cardItem.getLayout()}</p>
+                    <p>${card.cardItemById.getLayout()}</p>
                 </div>
             </div>
             <div class="row">
@@ -83,15 +97,12 @@
                     <strong>Price</strong>
                 </div>
                 <div class="col-md-4">
-                    <p>${card.cardItem.getPriceString()}</p>
+                    <p>${card.cardItemById.getPriceString()}</p>
                 </div>
             </div>
 
         </div>
     </div>
-
-    <img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy right"
-     style="height: 500px; width: 400px;" />
 
 <c:import url="termsOfUse.jsp" />
 </div>
