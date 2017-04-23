@@ -18,7 +18,7 @@
 <div id="content">
 <h3>Welcome to Library of Alexandria</h3>
 <img src="images/LibraryofAlexandria.jpeg" alt="library" class="fancy left"
-     style="height: 250px; width: 200px;" />
+     style="height: 250px; width: 179px;" />
 <p>This is a simple MTG cards cataloging application. You can add a
     collection and then add cards to a collection. Current price of cards are
     given.

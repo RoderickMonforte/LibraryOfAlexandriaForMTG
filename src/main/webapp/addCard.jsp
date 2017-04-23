@@ -32,7 +32,7 @@
         <div class="row">
             <%--first column of the second row is card image--%>
             <div class="col-md-3">
-                <img id="cardImage" src="images/LibraryofAlexandria.jpeg" style="height: 250px; width: 200px;" />
+                <img id="cardImage" src="images/LibraryofAlexandria.jpeg" style="height: 250px; width: 179px;" />
             </div>
             <%--second column of the second row is card selector--%>
             <div class="col-md-5">

@@ -19,8 +19,8 @@
     <%--first row heading card name--%>
     <div class="row">
         <div class="col-*-*">
-            <h3>${collection.displayName}</h3> <br>
-            <h2>${card.cardItemById.cardName}</h2>
+            <h3>${collection.displayName} Collection</h3>
+            <h2 style="text-align : center">${card.cardItemById.cardName}</h2>
         </div>
     </div>
     <%--second row for messages--%>
@@ -35,71 +35,120 @@
     </div>
     <%--third row details--%>
     <div class="row">
-        <div class="col-md-6">
-            <img src="${card.cardItemById.imageUrl}" alt="${card.cardItemById.cardName}" class="fancy right"
-                 style="height: 400px; width: 320px;" />
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="row">
-                <div class="col-md-2">
+                <img src="${card.cardItemById.imageUrl}" alt="${card.cardItemById.cardName}" class="fancy left"
+                     style="height: 400px; width: 286px;" />
+            </div>
+            <div class="row">
+                <br>
+                <form method="get" action="cardList.jsp">
+                    <input type="submit" class="btn btn-primary" value="Back to Card List" >
+                </form>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-3">
                     <strong>Artist</strong>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-9">
                     <p>${card.cardItemById.getArtist()}</p>
                 </div>
 
             </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <strong>Rarity</strong>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-9">
                     <p>${card.cardItemById.getRarity()}</p>
                 </div>
 
             </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <strong>Type</strong>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-9">
                     <p>${card.cardItemById.getType()}</p>
                 </div>
 
             </div>
 
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <strong>Set Name</strong>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-9">
                     <p>${card.cardItemById.getSetName()}</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <strong>Mana Cost</strong>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-9">
                     <p>${card.cardItemById.getManaCost()}</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <strong>Layout</strong>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-9">
                     <p>${card.cardItemById.getLayout()}</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <strong>Price</strong>
                 </div>
                 <div class="col-md-4">
                     <p>${card.cardItemById.getPriceString()}</p>
                 </div>
+                <div class="col-md-5">
+                    <form method="get" action="updatePrice?multiverseId=${card.cardItemById.multiverseId}">
+                        <input type="submit" class="btn btn-primary" value="Update Price" >
+                    </form>
+                </div>
             </div>
+            <hr>
+            <div class="row">
+                <form method="get" action="updateCard?cardId=${card.cardId}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ownedCount" >Owned Quantity</label>
+                                <input type="number" min="0" id="ownedCount" name="OwnedCount" class="form-control" value=${card.ownedQuantityString} required/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="wishCount" >Wish Count</label>
+                                <input type="number" min="0" id="wishCount" name="WishCount" class="form-control" value=${card.wishListString} required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="noteText" >Note Text</label>
+                                <textarea id="noteText" name="NoteText" class="form-control" rows="4" cols="20" placeholder="notes about this card">
+                                    ${card.noteText}
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input type="submit" class="btn btn-primary" value="Update" >
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
 
         </div>
     </div>

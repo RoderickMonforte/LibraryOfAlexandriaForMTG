@@ -44,7 +44,7 @@
     <div class="row">
         <%--first column of the third row is card image--%>
         <div class="col-md-3">
-            <img id="cardImage" src="images/LibraryofAlexandria.jpeg" style="height: 250px; width: 200px;" />
+            <img id="cardImage" src="images/LibraryofAlexandria.jpeg" style="height: 250px; width: 179px;" />
         </div>
         <%--second column of the third row for collection cards--%>
         <div class="col-md-9">

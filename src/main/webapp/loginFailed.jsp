@@ -18,7 +18,7 @@
 <div id="content">
 <h4>Only users can access MTG Card Collections! Please sign up to be a user.</h4>
 <img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"
-     style="height: 250px; width: 200px;" />
+     style="height: 250px; width: 179px;" />
 <p>This is a simple MTG cards cataloging application. You can add a
     collection and then add cards to a collection. Current price of cards are
     given.
