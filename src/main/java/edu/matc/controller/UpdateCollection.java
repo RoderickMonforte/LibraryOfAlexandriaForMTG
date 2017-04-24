@@ -42,7 +42,6 @@ public class UpdateCollection extends HttpServlet {
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession(true);
         String userID = req.getRemoteUser();
-        //String test = req.getParameter("collectionId");
         String[] parameters = req.getParameter("mode").split(";");
         String mode = parameters[0];
         int collectionId = Integer.valueOf(parameters[1]);

@@ -84,12 +84,13 @@ public class CollectionDao {
         session.close();
     }
 
-    public void updateCollection(int collectionId, int ownedQuantity, double
-            price) throws Exception {
-
+    public void updateCollection(int collectionId) throws Exception {
+        CardDao dao = new CardDao();
         Collection collection = getOne(collectionId);
-        int newCardQuantity = collection.getCardQuantity() + ownedQuantity;
-        double newPrice = collection.getPriceAmount() + price;
+
+        int newCardQuantity = dao.getSumOwnedByCollectionId(collectionId);
+        double newPrice = dao.getSumPriceByCollectionId(collectionId);
+
         collection.setCardQuantity(newCardQuantity);
         collection.setPriceAmount(newPrice);
 

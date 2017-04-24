@@ -35,6 +35,7 @@ public class AddCardLocal extends HttpServlet {
 
     private final Logger log = Logger.getLogger(this.getClass());
     private Alert alert = new Alert();
+    private HttpSession session;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -42,7 +43,7 @@ public class AddCardLocal extends HttpServlet {
 
         RequestDispatcher dispatcher;
         alert.success("New card added");
-        HttpSession session = req.getSession(true);
+        session = req.getSession(true);
 
         String stringId = req.getParameter("TheChoice");
         int ownedQuantity = Integer.valueOf(req.getParameter("OwnedCount"));
@@ -57,7 +58,6 @@ public class AddCardLocal extends HttpServlet {
                     .getCollectionId(), ownedQuantity, wishList, noteText));
         }
 
-        session.setAttribute("collection", collection);
         session.setAttribute("cards", cardLocals);
 
         req.setAttribute("alert", alert);
@@ -101,7 +101,6 @@ public class AddCardLocal extends HttpServlet {
             collectionId, int ownedQuantity, int wishList, String noteText) {
 
         CardDao dao = new CardDao();
-        CollectionDao daoSet = new CollectionDao();
         Double totalPrice = (double) ownedQuantity * cardItem.getPrice();
         CardLocal cardLocal = new CardLocal(collectionId, cardItem
                 .getUniversalCardId(), ownedQuantity,
@@ -110,7 +109,8 @@ public class AddCardLocal extends HttpServlet {
         try {
             int id = dao.addCardLocal(cardLocal);
             cardLocal.setUniversalCardId(id);
-            daoSet.updateCollection(collectionId, ownedQuantity, totalPrice);
+            updateCollection(collectionId);
+
         } catch (SQLException err) {
             String message = "Card already in the collection";
             log.info(message);
@@ -122,6 +122,25 @@ public class AddCardLocal extends HttpServlet {
         }
 
         return cardLocal;
+    }
+
+    private void updateCollection(int collectionId) {
+        CollectionDao daoSet = new CollectionDao();
+        Collection collection = null;
+
+        try {
+
+            daoSet.updateCollection(collectionId);
+            collection = daoSet.getOne(collectionId);
+            session.setAttribute("collection", collection);
+
+        } catch (Exception e) {
+            String message ="Error updating card to collection " + e
+                    .getMessage();
+            log.error(message);
+            alert.error(message);
+        }
+
     }
 
 

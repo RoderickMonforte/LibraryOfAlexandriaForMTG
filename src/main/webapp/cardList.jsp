@@ -6,6 +6,7 @@
     $(document).ready( function () {
         $('#userTable').DataTable();
     } );
+
 </script>
 
 
@@ -45,14 +46,25 @@
         <%--first column of the third row is card image--%>
         <div class="col-md-3">
             <img id="cardImage" src="images/LibraryofAlexandria.jpeg" style="height: 250px; width: 179px;" />
+            <br><br>
+            <form action="addCard.jsp" method="get">
+                <button type="submit" name="submit" value="Enter"
+                        class="btn btn-primary">Add new card</button>
+            </form>
+            <br>
+            <strong>Collection Statistics</strong>
+            <table class="table table-bordered">
+                <tr>
+                <th>Owned Cards</th><td> ${collection.cardQuantityString} </td>
+                </tr>
+                <tr>
+                <th>Total Price</th><td> ${collection.priceAmountString} </td>
+                </tr>
+            </table>
         </div>
         <%--second column of the third row for collection cards--%>
         <div class="col-md-9">
             <div class="container-fluid">
-                <form action="addCard.jsp" method="get">
-                    <button type="submit" name="submit" value="Enter"
-                            class="btn btn-primary">Add new card</button>
-                    <br/>
                 <table id="userTable" class="display" cellspacing="0" width="100%">
                     <thead>
                     <th>Name</th>
@@ -79,7 +91,7 @@
                                     <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li><a href="setUpCard?cardId=${card.cardId}">View/Edit</a></li>
-                                        <li><a href="#">Delete</a></li>
+                                        <li><a href="deleteCard?cardId=${card.cardId}">Delete</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -88,7 +100,6 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                </form>
             </div>
         </div>
     </div>

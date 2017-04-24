@@ -31,7 +31,6 @@ public class SetUpCard extends HttpServlet {
 
     private final Logger log = Logger.getLogger(this.getClass());
     private HttpServletRequest request;
-    private HttpServletResponse response;
     private HttpSession session;
     private Alert alert;
 
@@ -46,16 +45,26 @@ public class SetUpCard extends HttpServlet {
             throws ServletException, IOException {
 
         RequestDispatcher dispatcher;
+        alert = new Alert();
         session = req.getSession(true);
         request = req;
 
         getCardLocal();
 
-        dispatcher = req.getRequestDispatcher("cardDetail.jsp");
-        dispatcher.forward(req, resp);
+        if (alert.goOn()) {
+            dispatcher = req.getRequestDispatcher("cardDetail.jsp");
+            dispatcher.forward(req, resp);
+        } else {
+            request.setAttribute("alert", alert);
+            dispatcher = req.getRequestDispatcher("cardList.jsp");
+            dispatcher.forward(req, resp);
+        }
 
     }
 
+    /**
+     * This gets the card for detail viewing and editing.
+     */
     private void getCardLocal() {
         CardDao dao = new CardDao();
         CollectionDao daoCollect = new CollectionDao();
@@ -66,8 +75,8 @@ public class SetUpCard extends HttpServlet {
         try {
             cardLocal = dao.getOne(cardId);
             collection = daoCollect.getOne(cardLocal.getCollectionId());
-            request.setAttribute("collection", collection);
-            request.setAttribute("card", cardLocal);
+            session.setAttribute("collection", collection);
+            session.setAttribute("card", cardLocal);
         } catch (Exception e) {
             String error = "Could not find card# " + cardId + " " + e
                     .getMessage();

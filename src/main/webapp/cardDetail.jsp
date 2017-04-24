@@ -115,9 +115,10 @@
             </div>
             <hr>
             <div class="row">
-                <form method="get" action="updateCard?cardId=${card.cardId}">
+                <form method="get" action="updateCard">
                     <div class="row">
                         <div class="col-md-6">
+                            <input type="number" min="0" id="cardId" name="CardId" value=${card.cardId} hidden/>
                             <div class="form-group">
                                 <label for="ownedCount" >Owned Quantity</label>
                                 <input type="number" min="0" id="ownedCount" name="OwnedCount" class="form-control" value=${card.ownedQuantityString} required/>

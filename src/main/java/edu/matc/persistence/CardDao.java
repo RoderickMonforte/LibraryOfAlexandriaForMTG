@@ -1,8 +1,10 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.CardLocal;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
@@ -84,6 +86,44 @@ public class CardDao {
         session.close();
     }
 
+    /**
+     * Sum all the cards for a specific collection and return it
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public double getSumPriceByCollectionId(int id) throws Exception {
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Double> answer = new ArrayList<Double>();
 
+        Criteria criteria = session.createCriteria(CardLocal.class);
+        criteria.add(Restrictions.eq("collectionId", id));
+        criteria.setProjection(Projections.sum("priceAmount"));
 
+        answer = criteria.list();
+
+        return answer.get(0);
+
+    }
+
+    /**
+     * Sum all the cards for a specific collection and return it
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public int getSumOwnedByCollectionId(int id) throws Exception {
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Criteria criteria = session.createCriteria(CardLocal.class);
+        criteria.add(Restrictions.eq("collectionId", id));
+        criteria.setProjection(Projections.sum("ownedQuantity"));
+
+        String answer = criteria.list().get(0).toString();
+
+        return Integer.valueOf(answer);
+
+    }
 }

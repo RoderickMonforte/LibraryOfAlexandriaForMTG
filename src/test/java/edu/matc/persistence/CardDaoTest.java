@@ -8,13 +8,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
+
 /**
  * Created by student on 4/16/17.
  */
 public class CardDaoTest {
+
+
+    private CardDao dao;
+
     @Before
     public void setUp() throws Exception {
-
+        dao = new CardDao();
     }
 
     @After
@@ -50,4 +56,22 @@ public class CardDaoTest {
         return cardItem;
 
     }
+
+    @Test
+    public void getSumPriceByCollectionId() throws Exception {
+        double priceSum = dao.getSumPriceByCollectionId(7);
+
+        assertEquals("must be equal", 30.78, priceSum);
+
+
+    }
+    @Test
+    public void getSumOwnedByCollectionId() throws Exception {
+        int priceSum = dao.getSumOwnedByCollectionId(7);
+
+        assertEquals("must be equal", 2, priceSum);
+
+
+    }
+
 }
