@@ -62,8 +62,8 @@ public class AddCardLocal extends HttpServlet {
 
         req.setAttribute("alert", alert);
 
-            dispatcher = req.getRequestDispatcher("cardList.jsp");
-            dispatcher.forward(req, resp);
+        dispatcher = req.getRequestDispatcher("cardList.jsp");
+        dispatcher.forward(req, resp);
 
     }
 

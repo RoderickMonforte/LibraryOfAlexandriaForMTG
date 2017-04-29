@@ -118,7 +118,6 @@
                 }
                 document.getElementById("buildSelect").innerHTML = options;
                 var tValue = document.getElementById("buildSelect").value;
-//                document.getElementById("testValue").innerHTML = options;
 
             }
         };

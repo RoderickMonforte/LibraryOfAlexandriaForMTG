@@ -2,6 +2,7 @@ package edu.matc.persistence;
 
 import edu.matc.entity.CardLocal;
 import org.hibernate.Criteria;
+import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
@@ -41,7 +42,22 @@ public class CardDao {
         session.close();
         return cardLocal;
     }
+    /** Return a one cardLocal
+     *
+     * @return one cardLocals
+     */
+    public CardLocal getCardInCollection(int collectionId, int universalCardId)
+            throws Exception{
 
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(CardLocal.class);
+        criteria.add(Restrictions.eq("collectionId", collectionId));
+        criteria.add(Restrictions.eq("universalCardId", universalCardId));
+        CardLocal cardLocal = (CardLocal) criteria.list().get(0);
+
+        session.close();
+        return cardLocal;
+    }
     /**
      * Add cardLocal int.
      *
@@ -125,5 +141,47 @@ public class CardDao {
 
         return Integer.valueOf(answer);
 
+    }
+
+    /**
+     * @param skipCollectionId
+     * @param universalCardId
+     * @param newPrice
+     * @throws Exception
+     */
+    public void updateCardPrices(int skipCollectionId, int universalCardId,
+                                 double newPrice) throws Exception {
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        CollectionDao collectDao = new CollectionDao();
+        Transaction transaction = null;
+        CardLocal cardLocal = null;
+        double newOwnedPrice = 0.0;
+
+        transaction = session.beginTransaction();
+        Criteria criteria = session.createCriteria(CardLocal.class);
+        criteria.add(Restrictions.eq("universalCardId", universalCardId));
+        criteria.add(Restrictions.ne("collectionId", skipCollectionId));
+
+        ScrollableResults items = criteria.scroll();
+        int count=0;
+        while ( items.next() ) {
+
+            cardLocal = (CardLocal) items.get(0);
+            newOwnedPrice = (double) cardLocal.getOwnedQuantity() * newPrice;
+
+            cardLocal.setPriceAmount(newOwnedPrice);
+
+            session.saveOrUpdate(cardLocal);
+            if ( ++count % 100 == 0 ) {
+                session.flush();
+                session.clear();
+            }
+
+            collectDao.updateCollection(cardLocal.getCollectionId());
+
+        }
+
+        transaction.commit();
+        session.close();
     }
 }

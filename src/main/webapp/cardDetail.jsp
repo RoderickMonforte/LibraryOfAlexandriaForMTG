@@ -108,7 +108,8 @@
                     <p>${card.cardItemById.getPriceString()}</p>
                 </div>
                 <div class="col-md-5">
-                    <form method="get" action="updatePrice?multiverseId=${card.cardItemById.multiverseId}">
+                    <form method="get" action="updatePrice">
+                        <input type="number" min="0" id="multiverseId" name="MultiverseId"  value=${card.cardItemById.multiverseId} hidden/>
                         <input type="submit" class="btn btn-primary" value="Update Price" >
                     </form>
                 </div>
@@ -118,7 +119,7 @@
                 <form method="get" action="updateCard">
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="number" min="0" id="cardId" name="CardId" value=${card.cardId} hidden/>
+                            <input type="number" min="0" id="cardId" name="CardId"  value=${card.cardId} hidden/>
                             <div class="form-group">
                                 <label for="ownedCount" >Owned Quantity</label>
                                 <input type="number" min="0" id="ownedCount" name="OwnedCount" class="form-control" value=${card.ownedQuantityString} required/>
