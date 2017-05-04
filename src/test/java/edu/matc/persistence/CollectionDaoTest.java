@@ -83,5 +83,13 @@ public class CollectionDaoTest {
                 result);
 
     }
+    @Test
+    public void updateCollectionwithId() throws Exception {
+        collection.setCardQuantity(200);
+        collectionDao.updateCollection(375);
+        int result = collectionDao.getOne(collectionId).getCardQuantity();
+        assertEquals("Should be equal but not ",collection.getCardQuantity(),
+                result);
 
+    }
 }

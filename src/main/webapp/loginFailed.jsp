@@ -6,28 +6,41 @@
 
 <body>
 <div id="wrap">
-<div id="header"><br />
-<br />
-<h1>Library of Alexandria</h1>
-<h4 style="text-align: right;">"My power is as vast as the plains, my strength is that of
-    mountains. Each wave that crashes upon the shore thunders like blood in
-    my veins." - D.B.
-</h4>
-</div>
+<c:import url="header.jsp" />
 <c:import url="menu.jsp" />
 <div id="content">
-<h4>Only users can access MTG Card Collections! Please sign up to be a user.</h4>
-<img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"
-     style="height: 250px; width: 179px;" />
-<p>This is a simple MTG cards cataloging application. You can add a
-    collection and then add cards to a collection. Current price of cards are
-    given.
-</p>
-<div>
-    <form action="newUser.jsp" method="get">
-        <button type="submit">New User Sign Up</button><br>
-    </form>
-</div>
+    <div class="row">
+        <h4>Login Failed</h4>
+        <br>
+        <div class="alert alert-info">
+            <strong>Info!</strong> Only users can access MTG Card Collections! Please sign up to be a user.
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"
+                 style="height: 250px; width: 179px;" />
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <p>This is a simple MTG cards cataloging application. You can add a
+                    collection and then add cards to a collection. Current price of cards are
+                    given.
+                </p>
+
+            </div>
+            <div class="row">
+                <form action="newUser.jsp" method="get">
+                    <button type="submit" class="btn btn-success">New User Sign Up</button><br>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row"></div>
+
 <c:import url="termsOfUse.jsp" />
 </div>
 </div>

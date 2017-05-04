@@ -18,14 +18,7 @@
 </script>
 <body>
 <div id="wrap">
-<div id="header"><br />
-<br />
-<h1>Library of Alexandria</h1>
-<h4 style="text-align: right;">"My power is as vast as the plains, my strength is that of
-    mountains. Each wave that crashes upon the shore thunders like blood in
-    my veins." - D.B.
-</h4>
-</div>
+<c:import url="header.jsp" />
 <c:import url="menu.jsp" />
 <div id="content">
 <h3>${user.displayName} Collection</h3>
@@ -38,6 +31,11 @@
 <br/>
 <div>
     <div class="container-fluid">
+        <div class="row" ${alert.hidden}>
+            <div class="${alert.type}">
+                ${alert.message}
+            </div>
+        </div>
         <h4>Search Results: </h4>
         <form action="addCollection" method="get">
         <table id="collectionTable" class="display" cellspacing="0" width="100%">
@@ -50,44 +48,47 @@
             <th>Action</th>
             </thead>
             <tbody>
-            <tr>
-                <td><input type="text" class="form-control" id="collectionName"
-                           name="CollectionName"
-                           placeholder="new collection name" value=${collectionName}>
-                </td>
-                <td><!--<input type="text" class="form-control"
-                            id="descriptionText"
-                           name="DescriptionText"
-                           placeholder="new description"
-                           value=${descriptionText}>-->
-                    <textarea rows="2" cols="20" class="form-control"
-                              id="descriptionText" name="DescriptionText"
-                              placeholder="new description">${descriptionText}</textarea>
-                </td>
-                <td><!--<input type="text" class="form-control" id="noteText"
-                           name="NoteText"
-                           placeholder="note to self" value=${noteText}>-->
-                    <textarea rows="2" cols="20" class="form-control"
-                              id="noteText" name="NoteText"
-                              placeholder="reminder">${noteText}</textarea>
+                <tr>
+                    <td>
+                        <div class='form-group${alert.getField("CollectionName").fieldClass}'>
+                            <input type="text" class="form-control" id="collectionName"
+                                   name="CollectionName" placeholder="new collection name"
+                                   value='${alert.getField("CollectionName").value}'>
+                            ${alert.getField("CollectionName").spanString}
+                        </div>
+                    </td>
+                    <td>
+                        <div class='form-group${alert.getField("DescriptionText").fieldClass}'>
+                            <textarea rows="2" cols="20" class="form-control"
+                                      id="descriptionText" name="DescriptionText"
+                                      placeholder="new description">${alert.getField("DescriptionText").value}</textarea>
+                            ${alert.getField("DescriptionText").spanString}
+                        </div>
 
-                </td>
-                <td><input type="text" readonly="readonly"
-                           class="form-control"
-                           id="cardQuantity"
-                           name="CardQuantity"
-                           placeholder="counted">
-                </td>
-                <td><input type="text" readonly="readonly"
-                           class="form-control"
-                           id="priceAmount"
-                           name="PriceAmount"
-                           placeholder="computed">
-                </td>
-                <td><button type="submit" name="submit" value="Enter"
-                           class="btn btn-primary">Add</button>
-                </td>
-            </tr>
+                    </td>
+                    <td>
+                        <div class='form-group${alert.getField("NoteText").fieldClass}'>
+                            <textarea rows="2" cols="20" class="form-control"
+                                      id="noteText" name="NoteText"
+                                      placeholder="reminder">${alert.getField("NoteText").value}</textarea>
+                            ${alert.getField("NoteText").spanString}
+                    </td>
+                    <td><input type="text" readonly="readonly"
+                               class="form-control"
+                               id="cardQuantity"
+                               name="CardQuantity"
+                               placeholder="counted">
+                    </td>
+                    <td><input type="text" readonly="readonly"
+                               class="form-control"
+                               id="priceAmount"
+                               name="PriceAmount"
+                               placeholder="computed">
+                    </td>
+                    <td><button type="submit" name="submit" value="Enter"
+                               class="btn btn-primary">Add</button>
+                    </td>
+                </tr>
             <c:forEach var="collection" items="${collections}">
                 <tr>
                     <td>${collection.displayName}</td>

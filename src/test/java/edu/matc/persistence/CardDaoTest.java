@@ -67,7 +67,7 @@ public class CardDaoTest {
     }
     @Test
     public void getSumOwnedByCollectionId() throws Exception {
-        int priceSum = dao.getSumOwnedByCollectionId(7);
+        int priceSum = dao.getSumOwnedByCollectionId(375);
 
         assertEquals("must be equal", 2, priceSum);
 

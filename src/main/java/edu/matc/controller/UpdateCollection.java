@@ -1,8 +1,10 @@
 package edu.matc.controller;
 
 
+import edu.matc.edit.CollectionEdit;
 import edu.matc.entity.Collection;
 import edu.matc.persistence.CollectionDao;
+import edu.matc.util.Alert;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -28,6 +30,8 @@ import java.util.List;
 public class UpdateCollection extends HttpServlet {
 
     private final Logger log = Logger.getLogger(this.getClass());
+    private Alert alert = new Alert(3);
+    private CollectionEdit edit;
 
     /**
      * @param req
@@ -47,7 +51,7 @@ public class UpdateCollection extends HttpServlet {
         int collectionId = Integer.valueOf(parameters[1]);
 
         String target = process(req, session, mode, userID, collectionId);
-
+        req.setAttribute("alert", alert);
         dispatcher = req.getRequestDispatcher(target);
         dispatcher.forward(req, resp);
 
@@ -70,10 +74,12 @@ public class UpdateCollection extends HttpServlet {
             target = "updateCollection.jsp";
 
         } else if (mode.equals("updateReady")) {
-            updateCollection(req, session,userID, id);
-            target = "collection.jsp";
-        } else {
-            target = "collection.jsp";
+            updateCollection(req, session, userID, id);
+            if (alert.goOn()) {
+                target = "collection.jsp";
+            } else {
+                target = "updateCollection.jsp";
+            }
         }
 
         return target;
@@ -89,22 +95,30 @@ public class UpdateCollection extends HttpServlet {
         Collection collection = new Collection();
         collection.setCollectionId(id);
         collection.setUserId(userID);
-        collection.setDisplayName(req.getParameter("UpdateName"));
-        collection.setDescriptionText(req.getParameter("UpdateDescription"));
-        collection.setNoteText(req.getParameter("UpdateNote"));
+        collection.setDisplayName(req.getParameter("CollectionName"));
+        collection.setDescriptionText(req.getParameter("DescriptionText"));
+        collection.setNoteText(req.getParameter("NoteText"));
         collection.setCardQuantity(Integer.valueOf(req.getParameter("UpdateQuantity")));
         collection.setPriceAmount(Double.valueOf(req.getParameter
                 ("UpdateAmount")));
 
+        edit = new CollectionEdit(collection.getDisplayName(), collection.getDescriptionText(),
+                collection.getNoteText(), alert);
+
         try {
-            dao.updateCollection(collection);
-            session.setAttribute("collections", (List<Collection>) dao.getAll
-                    (userID));
+            edit.collectionAttributeValid();
+            if (alert.goOn()) {
+                dao.updateCollection(collection);
+                session.setAttribute("collections", (List<Collection>) dao.getAll
+                        (userID));
+                alert.normalize();
+                alert.success(collection.getDisplayName() + " is updated " +
+                        "successfully.");
+            }
         } catch (Exception e) {
             log.error("Update failed for collection id = " + id, e);
+            alert.error("Update failed for collection id = " + id);
         }
-
-        req.setAttribute("goodMessage","Collection updated.");
 
     }
 

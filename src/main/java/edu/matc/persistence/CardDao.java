@@ -132,14 +132,20 @@ public class CardDao {
     public int getSumOwnedByCollectionId(int id) throws Exception {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
+        int count = 0;
 
         Criteria criteria = session.createCriteria(CardLocal.class);
         criteria.add(Restrictions.eq("collectionId", id));
         criteria.setProjection(Projections.sum("ownedQuantity"));
 
-        String answer = criteria.list().get(0).toString();
+        try {
+            String answer = criteria.list().get(0).toString();
+            count = Integer.valueOf(answer);
+        } catch (Exception e) {
+            //This just means the collection has no cards so default is 0.
+        }
 
-        return Integer.valueOf(answer);
+        return count;
 
     }
 

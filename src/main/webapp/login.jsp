@@ -6,32 +6,46 @@
 
 <body>
 <div id="wrap">
-<div id="header"><br />
-<br />
-<h1>Library of Alexandria</h1>
-<h4 style="text-align: right;">"My power is as vast as the plains, my strength is that of
-    mountains. Each wave that crashes upon the shore thunders like blood in
-    my veins." - D.B.
-</h4>
-</div>
+<c:import url="header.jsp" />
 <c:import url="menu.jsp" />
 <div id="content">
-<h3>Please login to continue...</h3>
-<img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"
-     style="height: 250px; width: 179px;" />
-<p>This is a simple MTG cards cataloging application. You can add a
-    collection and then add cards to a collection. Current price of cards are
-    given.
-</p>
-<div>
-    <FORM ACTION="j_security_check" METHOD="POST">
-        <TABLE>
-            <TR><TD>User name:</TD> <TD><INPUT TYPE="TEXT" NAME="j_username"></TD>
-            <TR><TD>Password: </TD><TD><INPUT TYPE="PASSWORD" NAME="j_password"></TD>
-            <TR><TH><INPUT TYPE="SUBMIT" VALUE="Log In">
-        </TABLE>
-    </FORM>
-
+<div class="container-fluid">
+    <div class="row">
+        <h3>Please login to continue...</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <img src="images/LibraryofAlexandria.jpeg" alt="whale" class="fancy left"
+                 style="height: 250px; width: 179px;" />
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <p>This is a simple MTG cards cataloging application. You can add a
+                    collection and then add cards to a collection. Current price of cards are
+                    given.
+                </p>
+            </div>
+            <div class="row">
+                <FORM ACTION="j_security_check" METHOD="POST" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="UserName">User name:</label>
+                        <div class="col-md-9">
+                            <INPUT class="form-control" TYPE="TEXT" NAME="j_username" id="UserName" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="Password">Password:</label>
+                        <div class="col-md-9">
+                            <INPUT class="form-control" TYPE="PASSWORD" NAME="j_password" id="Password">
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align:right">
+                        <INPUT class="btn btn-primary" TYPE="SUBMIT" VALUE="Log In">
+                    </div>
+                </FORM>
+            </div>
+        </div>
+    </div>
 </div>
 <c:import url="termsOfUse.jsp" />
 </div>

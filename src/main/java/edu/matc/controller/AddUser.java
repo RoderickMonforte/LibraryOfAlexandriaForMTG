@@ -4,14 +4,15 @@ package edu.matc.controller;
 import edu.matc.edit.NewUserEdit;
 import edu.matc.entity.User;
 import edu.matc.persistence.UserDao;
+import edu.matc.util.Alert;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -25,6 +26,7 @@ import java.io.IOException;
 public class AddUser extends HttpServlet {
 
     private final Logger log = Logger.getLogger(this.getClass());
+    Alert alert = new Alert(4);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -34,13 +36,14 @@ public class AddUser extends HttpServlet {
         NewUserEdit edit;
         HttpSession session = req.getSession(true);
 
+
         String passwordText = req.getParameter("PasswordText");
         String rePasswordText = req.getParameter("RePasswordText");
         String userIDName = req.getParameter("UserIDName");
         String displayNameValue = req.getParameter("DisplayNameName");
 
         edit = new NewUserEdit(passwordText, rePasswordText, userIDName,
-                displayNameValue);
+                displayNameValue, alert);
 
         /*
          If new user passed all edits
@@ -49,6 +52,8 @@ public class AddUser extends HttpServlet {
             and forward to the collection webpage
          else forward to New User form again
          */
+        req.setAttribute("alert", alert);
+
         if (edit.userAttributeValid()) {
             User user = addUser(userIDName, displayNameValue, passwordText);
             loginUser(req, userIDName, passwordText);
@@ -57,7 +62,6 @@ public class AddUser extends HttpServlet {
             dispatcher = req.getRequestDispatcher("collection.jsp");
             dispatcher.forward(req, resp);
         } else { //redo entering new user info forms
-            req.setAttribute("errorMessage",edit.getMessage());
             dispatcher = req.getRequestDispatcher("newUser.jsp");
             dispatcher.forward(req, resp);
         }
@@ -71,6 +75,7 @@ public class AddUser extends HttpServlet {
             request.login(userID, passwordText);
         } catch (ServletException e) {
             log.error("Failed to Login after Add User", e);
+            alert.error("Unable to log new user. Try again.");
         }
 
     }

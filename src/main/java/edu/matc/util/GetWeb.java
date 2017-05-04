@@ -58,7 +58,6 @@ public class GetWeb {
             invocation.header(Property.get("header.type"), Property.get
                     ("header.value"));
 
-//            response = target.request(MediaType.APPLICATION_JSON).get(String.class);
             response = invocation.get(String.class);
             if (!response.equals("[\"\"]")) {
                 priceString = response.substring(3,(response.length()-2))
@@ -71,7 +70,9 @@ public class GetWeb {
 
     public static Card getCard(int id) throws Exception {
 
-        String https_url = "https://api.magicthegathering.io/v1/cards/" + id;
+        setUp();
+        
+        String https_url = Property.get("magicApi.uri") + id;
         URL url;
         String cards = "";
         setUp();
@@ -79,7 +80,8 @@ public class GetWeb {
         try {
             url = new URL(https_url);
             HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-            con.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 5.1; rv:19.0) Gecko/20100101 Firefox/19.0");
+            con.setRequestProperty(Property.get("header.type"),Property.get
+                    ("header.value"));
             BufferedReader br =
                     new BufferedReader(
                             new InputStreamReader(con.getInputStream()));

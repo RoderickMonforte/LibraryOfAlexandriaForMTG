@@ -1,5 +1,6 @@
 package edu.matc.edit;
 
+import edu.matc.util.Alert;
 import org.apache.log4j.Logger;
 
 /**
@@ -12,6 +13,7 @@ public class CollectionEdit {
     private String noteText;
     private String message;
     private final Logger log = Logger.getLogger(this.getClass());
+    private Alert alert;
 
     /**
      * Empty constructor
@@ -20,11 +22,13 @@ public class CollectionEdit {
 
     }
 
-    public CollectionEdit(String collectionName, String descriptionText, String noteText) {
+    public CollectionEdit(String collectionName, String descriptionText,
+                          String noteText, Alert alert) {
         this();
         this.collectionName = collectionName;
         this.descriptionText = descriptionText;
         this.noteText = noteText;
+        this.alert = alert;
     }
 
     /**
@@ -33,74 +37,72 @@ public class CollectionEdit {
      * @return true if all collection attributes passed in are valid
      */
     public boolean collectionAttributeValid() {
-        if (collectionNameIsValid() && descriptionTextIsValid() &&
-                noteTextIsValid()) {
-            return true;
-        }
-        else {
-            return false;
+
+        alert.initialize();
+        collectionNameIsValid();
+        descriptionTextIsValid();
+        noteTextIsValid();
+
+        if (alert.goOn()) {
+            alert.success(collectionName + " is added successfully.");
         }
 
+        return alert.goOn();
     }
 
     /**
      * check collection name against edits.
-     *
-     * @return true if collection name value passes edit.
      */
-    public boolean collectionNameIsValid() {
-        boolean allGood = true;
+    public void collectionNameIsValid() {
+
+        alert.initField(0, "CollectionName", collectionName);
 
         if (collectionName.isEmpty()) {
-            message = "Collection Name cannot be blank. Please enter valid " +
-                    "value.";
-            allGood = false;
+            alert.error(0,"Collection Name cannot be blank. Please enter " +
+                    "valid value.");
         } else if (!collectionName.matches("^[^\\x00-\\x1F\\x80-\\x9F]+$")) {
-            message = "Only printable characters are valid for collection " +
-                    "name.Please enter valid value.";
-            allGood = false;
+            alert.error(0,"Only printable characters are valid for collection" +
+                    " name.Please enter valid value.");
+        } else {
+            alert.fieldPassed("CollectionName");
         }
 
-        return allGood;
     }
 
     /**
      * determine if the description text is valid
      *
-     * @return true if description text is valid
      */
-    public boolean descriptionTextIsValid() {
-        boolean  allGood = true;
+    public void descriptionTextIsValid() {
+
+        alert.initField(1, "DescriptionText", descriptionText);
 
         if (descriptionText.isEmpty()) {
-            allGood = true;
+            alert.fieldPassed("DescriptionText");
         } else if (!descriptionText.matches("^[^\\x00-\\x1F\\x80-\\x9F]+$")) {
-            message = "Description text contains invalid values. Please use " +
-                    "visible characters only.";
-            allGood = false;
+            alert.error(1, "Description text contains invalid values. Please " +
+                    "use visible characters only.");
+        } else {
+            alert.fieldPassed("DescriptionText");
         }
-
-        return allGood;
 
     }
 
     /**
      * determines if note text is valid
-     *
-     * @return true if note text is valid
      */
-    public boolean noteTextIsValid() {
-        boolean allGood = true;
+    public void noteTextIsValid() {
+
+        alert.initField(2, "NoteText", noteText);
 
         if (noteText.isEmpty()) {
-            allGood = true;
+            alert.fieldPassed("NoteText");
         } else if (!noteText.matches("^[^\\x00-\\x1F\\x80-\\x9F]+$")) {
-            message = "Note text contains invalid values. Please use " +
-                    "visible characters only.";
-            allGood = false;
+            alert.error(2, "Note text contains invalid values. Please " +
+                    "use visible characters only.");
+        } else {
+            alert.fieldPassed("NoteText");
         }
-
-        return allGood;
 
     }
 

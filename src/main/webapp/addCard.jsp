@@ -11,20 +11,13 @@
 
 <body>
 <div id="wrap">
-    <div id="header"><br />
-        <br />
-        <h1>Library of Alexandria</h1>
-        <h4 style="text-align: right;">"My power is as vast as the plains, my strength is that of
-            mountains. Each wave that crashes upon the shore thunders like blood in
-            my veins." - D.B.
-        </h4>
-    </div>
+    <c:import url="header.jsp" />
     <c:import url="menu.jsp" />
     <div id="content">
         <%--first row of the content wich is the collection name--%>
         <div class="row">
             <div class="col-*-*">
-                <h3>${collection.displayName} Card List</h3>
+                <h3>Add New Card to ${collection.displayName}</h3>
             </div>
         </div>
 

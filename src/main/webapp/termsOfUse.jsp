@@ -1,7 +1,7 @@
-<div>
+<div class="row" style="font-size: 60%">
     <br clear="both"/>
-    <h2>License&nbsp; &amp; Terms of Use<br />
-    </h2>
+    <h5>License&nbsp; &amp; Terms of Use<br />
+    </h5>
     <p> All templates published and available for free from
         simpletemplates.org are released and licensed under <a href="http://creativecommons.org/licenses/by/3.0/">Attribution
             3.0

@@ -4,6 +4,7 @@ import edu.matc.entity.Collection;
 import edu.matc.entity.User;
 import edu.matc.persistence.CollectionDao;
 import edu.matc.persistence.UserDao;
+import edu.matc.util.Alert;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -26,6 +27,7 @@ import java.util.List;
 public class SetUpCollection extends HttpServlet {
 
     private final Logger log = Logger.getLogger(this.getClass());
+    private Alert alert = new Alert(3);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -37,6 +39,7 @@ public class SetUpCollection extends HttpServlet {
         List<Collection> collections = setUp(user.getUserId());
 
         session.setAttribute("collections", collections);
+        req.setAttribute("alert", alert);
 
         dispatcher = req.getRequestDispatcher("collection.jsp");
         dispatcher.forward(req, resp);
@@ -48,7 +51,9 @@ public class SetUpCollection extends HttpServlet {
         try {
             collections = (List<Collection>) new CollectionDao().getAll(userId);
         } catch (Exception e) {
-            log.error("Error getting all collections for user " + userId + " ", e);
+            String error = "Error getting all collections for user " + userId;
+            log.error( error + " ", e);
+            alert.error(error);
         }
 
         return collections;
@@ -66,7 +71,9 @@ public class SetUpCollection extends HttpServlet {
             try {
                 user = userDao.getUser(userId);
             } catch (Exception e) {
-                log.error("Error getting User " + userId + " ", e);
+                String error = "Error getting User " + userId;
+                log.error(error + " ", e);
+                alert.error(error);
             }
 
             session.setAttribute("user", user);

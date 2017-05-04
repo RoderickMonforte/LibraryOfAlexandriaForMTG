@@ -17,6 +17,7 @@
 
 
 <script>
+    //TODO delete this page
     document.getElementById("query").addEventListener('keyup', function() {
         var query = document.getElementById("query").value
         loadDoc(query);

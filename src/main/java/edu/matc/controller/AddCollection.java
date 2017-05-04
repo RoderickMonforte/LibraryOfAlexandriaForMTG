@@ -4,6 +4,7 @@ package edu.matc.controller;
 import edu.matc.edit.CollectionEdit;
 import edu.matc.entity.Collection;
 import edu.matc.persistence.CollectionDao;
+import edu.matc.util.Alert;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -26,6 +27,7 @@ import java.util.List;
 public class AddCollection extends HttpServlet {
 
     private final Logger log = Logger.getLogger(this.getClass());
+    private Alert alert = new Alert(3);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -40,7 +42,8 @@ public class AddCollection extends HttpServlet {
         String noteText = req.getParameter("NoteText");
         String userID = req.getRemoteUser();
 
-        edit = new CollectionEdit(collectionName, descriptionText, noteText);
+        edit = new CollectionEdit(collectionName, descriptionText, noteText,
+                alert);
 
         /*
          If new user passed all edits
@@ -49,22 +52,18 @@ public class AddCollection extends HttpServlet {
             and forward to the collection webpage
          else forward to New User form again
          */
+
         if (edit.collectionAttributeValid()) {
             session.setAttribute("collections", addCollection(userID,
                     collectionName, descriptionText, noteText));
 
-            req.setAttribute("goodMessage", "New collection added.");
-
-            dispatcher = req.getRequestDispatcher("collection.jsp");
-            dispatcher.forward(req, resp);
-        } else { //redo entering new user info forms
-            req.setAttribute("errorMessage",edit.getMessage());
-            req.setAttribute("CollectionName", collectionName);
-            req.setAttribute("DescriptionText", descriptionText);
-            req.setAttribute("NoteText", noteText);
-            dispatcher = req.getRequestDispatcher("collection.jsp");
-            dispatcher.forward(req, resp);
+            alert.normalize();
         }
+
+        req.setAttribute("alert", alert);
+
+        dispatcher = req.getRequestDispatcher("collection.jsp");
+        dispatcher.forward(req, resp);
 
     }
 

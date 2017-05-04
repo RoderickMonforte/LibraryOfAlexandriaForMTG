@@ -18,26 +18,18 @@
 </script>
 <body>
 <div id="wrap">
-<div id="header"><br />
-<br />
-<h1>Library of Alexandria</h1>
-<h4 style="text-align: right;">"My power is as vast as the plains, my strength is that of
-    mountains. Each wave that crashes upon the shore thunders like blood in
-    my veins." - D.B.
-</h4>
-</div>
+<c:import url="header.jsp" />
 <c:import url="menu.jsp" />
 <div id="content">
 <h3>${user.displayName} Collection</h3>
-<div id="message">
-    <p>${errorMessage}</p>
-</div>
-<div id="good">
-    <p>${goodMessage}</p>
-</div>
 <br/>
 <div>
     <div class="container-fluid">
+        <div class="row" ${alert.hidden}>
+            <div class="${alert.type}">
+                ${alert.message}
+            </div>
+        </div>
         <h4>Search Results: </h4>
         <form action="updateCollection" method="get" id="updateForm">
         <table id="collectionTable" class="display" cellspacing="0" width="100%">
@@ -53,24 +45,29 @@
             <c:forEach var="collection" items="${collections}">
                 <c:choose>
                     <c:when test="${updateId==collection.collectionId}">
-                        <tr>
-                        <td><input type="text" class="form-control"
-                                   id="updateName"
-                                   name="UpdateName"
-                                   placeholder="new collection name"
-                                   value="${collection.displayName}">
+                        <td>
+                            <div class='form-group${alert.getField("CollectionName").fieldClass}'>
+                                <input type="text" class="form-control" id="collectionName"
+                                       name="CollectionName" placeholder="new collection name"
+                                       value='${collection.displayName}'>
+                                    ${alert.getField("CollectionName").spanString}
+                            </div>
                         </td>
                         <td>
-                    <textarea rows="2" cols="20" class="form-control"
-                              id="updateDescription"
-                              name="UpdateDescription"
-                              placeholder="new description">${collection.descriptionText}</textarea>
-                        </td>
-                        <td>
-                    <textarea rows="2" cols="20" class="form-control"
-                              id="updateNote" name="UpdateNote"
-                              placeholder="reminder">${collection.noteText}</textarea>
+                            <div class='form-group${alert.getField("DescriptionText").fieldClass}'>
+                            <textarea rows="2" cols="20" class="form-control"
+                                      id="descriptionText" name="DescriptionText"
+                                      placeholder="new description">${collection.descriptionText}</textarea>
+                                    ${alert.getField("DescriptionText").spanString}
+                            </div>
 
+                        </td>
+                        <td>
+                            <div class='form-group${alert.getField("NoteText").fieldClass}'>
+                            <textarea rows="2" cols="20" class="form-control"
+                                      id="noteText" name="NoteText"
+                                      placeholder="reminder">${collection.noteText}</textarea>
+                                    ${alert.getField("NoteText").spanString}
                         </td>
                         <td><input type="text" readonly="readonly"
                                    class="form-control"

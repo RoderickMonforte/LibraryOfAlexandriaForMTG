@@ -41,8 +41,6 @@ public class CollectionSuperUpdate implements MessageListener {
 
     private void superUpdate() {
         CardDao cardDao = new CardDao();
-        //TODO delete this debuging log info
-        log.info("made it here in superUpdate");
 
         try {
             cardDao.updateCardPrices(skipCollectionId, changeUniversalCardId, newCardPrice);
@@ -62,8 +60,6 @@ public class CollectionSuperUpdate implements MessageListener {
         String[] nameValue = null;
 
         for (String mapping : parameters) {
-            //TODO delete this debuging log info
-            log.info("Processing" + mapping.toString());
             nameValue = mapping.split("=");
             if (nameValue[0].contains("collectionId")) {
                 skipCollectionId = Integer.valueOf(nameValue[1]);

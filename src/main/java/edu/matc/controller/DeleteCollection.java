@@ -3,6 +3,7 @@ package edu.matc.controller;
 
 import edu.matc.entity.Collection;
 import edu.matc.persistence.CollectionDao;
+import edu.matc.util.Alert;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -28,6 +29,7 @@ import java.util.List;
 public class DeleteCollection extends HttpServlet {
 
     private final Logger log = Logger.getLogger(this.getClass());
+    private Alert alert = new Alert(3);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -42,7 +44,8 @@ public class DeleteCollection extends HttpServlet {
 
         deleteCollection(userID, collectionId, session);
 
-        req.setAttribute("goodMessage","Collection deleted.");
+        alert.success("Collection is deleted");
+        req.setAttribute("alert",alert);
         dispatcher = req.getRequestDispatcher("collection.jsp");
         dispatcher.forward(req, resp);
 

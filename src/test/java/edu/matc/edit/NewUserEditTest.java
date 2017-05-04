@@ -1,9 +1,11 @@
 package edu.matc.edit;
 
+import edu.matc.util.Alert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test NewUserEdit class
@@ -11,10 +13,11 @@ import static org.junit.Assert.*;
  */
 public class NewUserEditTest {
     NewUserEdit edit;
+    Alert alert = new Alert(4);
 
     @Before
     public void setUp() throws Exception {
-        edit = new NewUserEdit("test1","test1","test1","test1");
+        edit = new NewUserEdit("test1","test1","test1","test1", alert);
     }
 
     @Test
@@ -24,7 +27,7 @@ public class NewUserEditTest {
     }
     @Test
     public void userAttributeValidFalse() throws Exception {
-        edit = new NewUserEdit("test1","test2","test1","test1");
+        edit = new NewUserEdit("test1","test2","test1","test1", alert);
         assertFalse("Invalid User entered but returned valid",edit
                 .userAttributeValid());
     }

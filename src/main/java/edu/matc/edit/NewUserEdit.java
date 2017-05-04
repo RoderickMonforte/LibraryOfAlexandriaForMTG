@@ -2,6 +2,7 @@ package edu.matc.edit;
 
 import edu.matc.entity.User;
 import edu.matc.persistence.UserDao;
+import edu.matc.util.Alert;
 import org.apache.log4j.Logger;
 
 /**
@@ -13,14 +14,13 @@ public class NewUserEdit {
     private String rePasswordText;
     private String userIDName;
     private String displayNameValue;
-    private String message;
+    private Alert alert;
     private final Logger log = Logger.getLogger(this.getClass());
 
     /**
      * Empty constructor
      */
     public NewUserEdit() {
-
     }
 
     /**
@@ -30,13 +30,16 @@ public class NewUserEdit {
      * @param rePasswordText   the re password text
      * @param userIDName       the user id name
      * @param displayNameValue the display name value
+     * @param alert            this handles formatting
      */
-    public NewUserEdit(String passwordText, String rePasswordText, String userIDName, String displayNameValue) {
+    public NewUserEdit(String passwordText, String rePasswordText, String
+            userIDName, String displayNameValue, Alert alert) {
         this();
         this.passwordText = passwordText;
         this.rePasswordText = rePasswordText;
         this.userIDName = userIDName;
         this.displayNameValue = displayNameValue;
+        this.alert = alert;
     }
 
     /**
@@ -45,12 +48,18 @@ public class NewUserEdit {
      * @return true if all user attributes passed in are valid
      */
     public boolean userAttributeValid() {
-        if (userIDIsValid() && displayNameValueIsValid() && passwordIsValid()) {
-            return true;
+
+        alert.initialize();
+
+        userIDIsValid();
+        displayNameValueIsValid();
+        passwordIsValid();
+
+        if (alert.goOn()) {
+            alert.success("New user added.");
         }
-        else {
-            return false;
-        }
+
+        return alert.goOn();
 
     }
 
@@ -60,21 +69,22 @@ public class NewUserEdit {
      * @return true if display name value passes edit on display name.
      */
     public boolean displayNameValueIsValid() {
-        boolean allGood = true;
 
+        alert.initField(1, "DisplayNameName", displayNameValue);
         if (displayNameValue.isEmpty()) {
-            message = "Display Name cannot be blank. Please enter valid value.";
-            allGood = false;
+            alert.error(1, "Display Name cannot be blank. Please enter valid " +
+                    "value.");
         } else if (!displayNameValue.matches("^[^\\x00-\\x1F\\x80-\\x9F]+$")) {
-            message = "Only printable characters are valid for display name." +
-                    "Please enter valid value.";
-            allGood = false;
+            alert.error(1, "Only printable characters are valid for display " +
+                    "name" +
+                    ". Please enter valid value.");
         } else if (displayNameValue.length() < 5) {
-            message = "Display Name must be five characters or longer.";
-            allGood = false;
+            alert.error(1, "Display Name must be five characters or longer.");
+        } else {
+            alert.fieldPassed("DisplayNameName");
         }
 
-        return allGood;
+        return alert.goOn();
     }
 
     /**
@@ -83,25 +93,26 @@ public class NewUserEdit {
      * @return true if password is valid against the password edits.
      */
     public boolean passwordIsValid() {
-        boolean  allGood = true;
+
+        alert.initField(2, "PasswordText", passwordText);
+        alert.initField(3, "RePasswordText", rePasswordText);
 
         if (passwordText.isEmpty()) {
-            message = "Password is empty. Please enter a valid password.";
-            allGood = false;
+            alert.error(2,"Password is empty. Please enter a valid password.");
         } else if (!passwordText.matches("^[^\\x00-\\x1F\\x80-\\x9F]+$")) {
-            message = "Password contains invalid values. Please use visible " +
-                    "characters only.";
-            allGood = false;
-        } else if (passwordText.length() < 5) {
-            message = "Password must be five characters or longer";
-            allGood = false;
+            alert.error(2,"Password contains invalid values. Please " +
+                    "use visible characters only.");
+        } else if (passwordText.length() < 5 && passwordText.length() > 12) {
+            alert.error(2,"Password must be five to twelve characters long");
         } else if (!passwordText.equals(rePasswordText)) {
-            message = "Password does not match re-typed password. Please " +
-                    "enter a valid password.";
-            allGood = false;
+            alert.error(3,"Password does not match re-typed password. Please " +
+                    "enter a valid password.");
+        } else {
+            alert.fieldPassed("PasswordText");
+            alert.fieldPassed("RePasswordText");
         }
 
-        return allGood;
+        return alert.goOn();
 
     }
 
@@ -111,33 +122,34 @@ public class NewUserEdit {
      * @return true if user id is valid against the edits.
      */
     public boolean userIDIsValid() {
-        boolean allGood = true;
         UserDao userDao = new UserDao();
         User checkUser = null;
+
+        alert.initField(0, "UserIdName", userIDName);
 
         try {
             checkUser = userDao.getUser(userIDName);
         } catch (Exception exception) {
             log.error("getUserID error",exception );
+            alert.error(0,"System data is unavailable.");
         }
 
         if (checkUser != null) {
-            allGood = false;
-            message = "Entered user ID is taken. Please enter a different " +
-                    "user ID.";
+            alert.error(0,"Entered user ID is taken. Please enter a different" +
+                    " " +
+                    "user ID.");
         } else if (userIDName.isEmpty()) {
-            allGood = false;
-            message = "User ID is empty. Please enter a valid user ID.";
+            alert.error(0,"User ID is empty. Please enter a valid user ID.");
         } else if (!userIDName.matches("^[a-zA-Z0-9]*$")) {
-            allGood = false;
-            message = "User ID contains invalid values. Please use letters " +
-                    "and numbers only.";
+            alert.error(0,"User ID contains invalid values. Please use " +
+                    "letters and numbers only.");
         } else if (userIDName.length() < 5) {
-            allGood = false;
-            message = "User ID must be five characters or longer.";
+            alert.error(0, "User ID must be five characters or longer.");
+        } else {
+            alert.fieldPassed("UserIdName");
         }
 
-        return allGood;
+        return alert.goOn();
 
     }
 
@@ -213,12 +225,4 @@ public class NewUserEdit {
         this.rePasswordText = rePasswordText;
     }
 
-    /**
-     * Gets message.
-     *
-     * @return Value of message.
-     */
-    public String getMessage() {
-        return message;
-    }
 }
