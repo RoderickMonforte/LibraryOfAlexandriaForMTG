@@ -112,14 +112,24 @@ public class CardDao {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         List<Double> answer = new ArrayList<Double>();
+        Double newPrice = 0.0;
 
         Criteria criteria = session.createCriteria(CardLocal.class);
         criteria.add(Restrictions.eq("collectionId", id));
         criteria.setProjection(Projections.sum("priceAmount"));
 
-        answer = criteria.list();
+        try {
+            answer = criteria.list();
+            if (answer.size() > 0) {
+                if (answer.get(0) != null) {
+                    newPrice = answer.get(0);
+                }
+            }
+        } catch (Exception e) {
+            //return 0.0 because there are no cards in the collection.
+        }
 
-        return answer.get(0);
+        return newPrice;
 
     }
 
@@ -177,7 +187,7 @@ public class CardDao {
 
             cardLocal.setPriceAmount(newOwnedPrice);
 
-            session.saveOrUpdate(cardLocal);
+            session.update(cardLocal);
             if ( ++count % 100 == 0 ) {
                 session.flush();
                 session.clear();

@@ -32,6 +32,9 @@ public class LogOut extends HttpServlet {
         HttpSession session = req.getSession(true);
 
         session.removeAttribute("user");
+        session.removeAttribute("collection");
+        session.removeAttribute("cards");
+        session.removeAttribute("card");
         session.invalidate();
         req.logout();
 

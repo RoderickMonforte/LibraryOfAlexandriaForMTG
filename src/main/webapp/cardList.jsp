@@ -4,7 +4,9 @@
 <c:import url="head.jsp" />
 <script type="text/javascript" class="init">
     $(document).ready( function () {
-        $('#userTable').DataTable();
+        $('#userTable').DataTable({
+            "responsive" : true
+        });
     } );
 
 </script>

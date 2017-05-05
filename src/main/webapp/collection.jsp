@@ -5,6 +5,7 @@
 <script type="text/javascript" class="init">
     $(document).ready( function () {
         $('#collectionTable').DataTable({
+            "responsive" : true,
             "columns": [
                 { "width": "18%" },
                 { "width": "25%" },

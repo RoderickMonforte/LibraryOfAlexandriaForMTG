@@ -80,6 +80,8 @@ public class UpdateCollection extends HttpServlet {
             } else {
                 target = "updateCollection.jsp";
             }
+        } else {
+            target = "collection.jsp";
         }
 
         return target;
