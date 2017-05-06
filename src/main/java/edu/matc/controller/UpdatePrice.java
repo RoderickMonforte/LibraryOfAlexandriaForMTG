@@ -155,6 +155,13 @@ public class UpdatePrice extends HttpServlet {
 
     }
 
+    /**
+     * This updates the collection due to change of price of a card.
+     * @param collectionId
+     * @param cardId
+     * @param id
+     * @param newPrice
+     */
     private void updateCollectionPrice(int collectionId, int cardId, int id,
                double newPrice) {
         CollectionDao collectDao = new CollectionDao();
@@ -178,6 +185,11 @@ public class UpdatePrice extends HttpServlet {
         }
     }
 
+    /**
+     * This fires off a message to update all the other collections impaced
+     * by the change of the price of card.
+     * @param message
+     */
     public void run(String message) {
 
         Session session = null;

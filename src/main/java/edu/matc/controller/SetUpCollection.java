@@ -46,6 +46,11 @@ public class SetUpCollection extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    /**
+     * This creates the list of collection for display
+     * @param userId
+     * @return
+     */
     private List<Collection> setUp(String userId) {
         List<Collection> collections = null;
 
@@ -61,6 +66,12 @@ public class SetUpCollection extends HttpServlet {
 
     }
 
+    /**
+     * This gets the user that logged in.
+     * @param request
+     * @param session
+     * @return
+     */
     private User getUser(HttpServletRequest request, HttpSession session) {
         String userId = null;
         User user = (User) session.getAttribute("user");

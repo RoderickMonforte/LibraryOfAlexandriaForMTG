@@ -125,6 +125,10 @@ public class AddCardLocal extends HttpServlet {
         return cardLocal;
     }
 
+    /**
+     * Update the collection based on collection id due to additional card.
+     * @param collectionId
+     */
     private void updateCollection(int collectionId) {
         CollectionDao daoSet = new CollectionDao();
         Collection collection = null;

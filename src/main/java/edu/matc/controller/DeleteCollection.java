@@ -51,6 +51,12 @@ public class DeleteCollection extends HttpServlet {
 
     }
 
+    /**
+     * deletes the collection for the user and collection
+     * @param userID
+     * @param collectionId
+     * @param session
+     */
     private void deleteCollection(String userID, int collectionId, HttpSession
             session) {
         CollectionDao dao = new CollectionDao();

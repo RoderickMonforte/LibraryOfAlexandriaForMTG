@@ -104,6 +104,11 @@ public class UpdateCard extends HttpServlet {
         }
     }
 
+    /**
+     * This update the collection by getting the count and prices of cards
+     * included.
+     * @param collectionId
+     */
     private void updateCollection(int collectionId) {
         CollectionDao dao = new CollectionDao();
         Collection collection;

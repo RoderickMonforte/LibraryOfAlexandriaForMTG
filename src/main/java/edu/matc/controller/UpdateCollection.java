@@ -59,6 +59,7 @@ public class UpdateCollection extends HttpServlet {
 
 
     /**
+     * This process the update request mode of the collection
      * @param req
      * @param session
      * @param mode
@@ -88,6 +89,7 @@ public class UpdateCollection extends HttpServlet {
     }
 
     /**
+     * This is the actual update of the collection.
      * @param req
      * @param id
      */

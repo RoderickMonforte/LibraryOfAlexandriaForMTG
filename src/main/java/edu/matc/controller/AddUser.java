@@ -68,6 +68,12 @@ public class AddUser extends HttpServlet {
 
     }
 
+    /**
+     * This logs the user after creating a new user
+     * @param request
+     * @param userID
+     * @param passwordText
+     */
     private void loginUser(HttpServletRequest request, String userID, String
             passwordText) {
 

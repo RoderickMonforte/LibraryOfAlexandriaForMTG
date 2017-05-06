@@ -64,6 +64,11 @@ public class SetUpCardLocal extends HttpServlet {
         }
     }
 
+    /**
+     * This gets the collection using passed parameter collection id.
+     * @param collectionId
+     * @return the collection
+     */
     private Collection getCollection(int collectionId) {
         Collection collection = null;
 
@@ -78,6 +83,11 @@ public class SetUpCardLocal extends HttpServlet {
 
     }
 
+    /**
+     * This sets up all the cards included in that collection.
+     * @param collectionId
+     * @return
+     */
     private List<CardLocal> setUp(int collectionId) {
         List<CardLocal> cardLocals = null;
 

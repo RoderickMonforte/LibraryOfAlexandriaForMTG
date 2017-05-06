@@ -70,7 +70,7 @@ public class AddCollection extends HttpServlet {
 
 
     /**
-     * This method adds the user
+     * This method adds the collection for the user
      */
     private List<Collection> addCollection(String userID, String collectionName,
                                      String

@@ -24,6 +24,10 @@ public class CollectionSuperUpdate implements MessageListener {
     public CollectionSuperUpdate() {
     }
 
+    /**
+     * Gets executed upon sending the message.
+     * @param message
+     */
     public void onMessage(Message message) {
         TextMessage updateMessage = (TextMessage) message;
         String messageText = null;
@@ -39,6 +43,10 @@ public class CollectionSuperUpdate implements MessageListener {
 
     }
 
+    /**
+     * From the message the values are used to update all the collections
+     * with the card that has a price change.
+     */
     private void superUpdate() {
         CardDao cardDao = new CardDao();
 
