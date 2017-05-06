@@ -67,6 +67,7 @@ public class DeleteCard extends HttpServlet {
         try {
             dao.deleteCardLocal(cardId);
             cards = dao.getAll(collection.getCollectionId());
+            session.removeAttribute("cards");
             session.setAttribute("cards", cards);
             updateCollection(collection.getCollectionId());
         } catch (Exception e) {
@@ -88,6 +89,7 @@ public class DeleteCard extends HttpServlet {
         try {
             daoSet.updateCollection(collectionId);
             collection = daoSet.getOne(collectionId);
+            session.removeAttribute("collection");
             session.setAttribute("collection", collection);
         } catch (Exception e) {
             String message ="Error updating collection because of deleted card "

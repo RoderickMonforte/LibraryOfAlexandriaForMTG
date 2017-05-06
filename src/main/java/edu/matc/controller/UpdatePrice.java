@@ -139,6 +139,8 @@ public class UpdatePrice extends HttpServlet {
             cardLocal.setPriceAmount(newOwnedPrice);
             cardDao.updateCardLocal(cardLocal);
             cards = cardDao.getAll(collectionId);
+            session.removeAttribute("cards");
+            session.removeAttribute("card");
             session.setAttribute("cards", cards);
             session.setAttribute("card", cardLocal);
             updateCollectionPrice(cardLocal.getCollectionId(), cardLocal.getCardId(),
@@ -165,6 +167,7 @@ public class UpdatePrice extends HttpServlet {
         try {
             collectDao.updateCollection(collectionId);
             collection = collectDao.getOne(collectionId);
+            session.removeAttribute("collection");
             session.setAttribute("collection", collection);
             run(message);
         } catch (Exception e) {

@@ -64,6 +64,7 @@ public class DeleteCollection extends HttpServlet {
                     collectionId, e);
         }
 
+        session.removeAttribute("collections");
         session.setAttribute("collections", list);
     }
 }

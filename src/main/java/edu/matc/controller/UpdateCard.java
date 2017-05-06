@@ -90,7 +90,9 @@ public class UpdateCard extends HttpServlet {
             cards = dao.getAll(oldCard.getCollectionId());
             updateCollection(oldCard.getCollectionId());
 
+            session.removeAttribute("card");
             session.setAttribute("card", oldCard);
+            session.removeAttribute("cards");
             session.setAttribute("cards", cards);
             alert.success("Update successful!");
 
@@ -109,6 +111,7 @@ public class UpdateCard extends HttpServlet {
         try {
             dao.updateCollection(collectionId);
             collection = dao.getOne(collectionId);
+            session.removeAttribute("collection");
             session.setAttribute("collection", collection);
 
         } catch (Exception e) {

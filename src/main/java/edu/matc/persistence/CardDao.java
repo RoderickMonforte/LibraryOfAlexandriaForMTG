@@ -173,7 +173,6 @@ public class CardDao {
         CardLocal cardLocal = null;
         double newOwnedPrice = 0.0;
 
-        transaction = session.beginTransaction();
         Criteria criteria = session.createCriteria(CardLocal.class);
         criteria.add(Restrictions.eq("universalCardId", universalCardId));
         criteria.add(Restrictions.ne("collectionId", skipCollectionId));
@@ -186,8 +185,10 @@ public class CardDao {
             newOwnedPrice = (double) cardLocal.getOwnedQuantity() * newPrice;
 
             cardLocal.setPriceAmount(newOwnedPrice);
-
+            transaction = session.beginTransaction();
             session.update(cardLocal);
+            transaction.commit();
+
             if ( ++count % 100 == 0 ) {
                 session.flush();
                 session.clear();
@@ -197,7 +198,6 @@ public class CardDao {
 
         }
 
-        transaction.commit();
         session.close();
     }
 }

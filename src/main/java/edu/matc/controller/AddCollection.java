@@ -54,6 +54,7 @@ public class AddCollection extends HttpServlet {
          */
 
         if (edit.collectionAttributeValid()) {
+            session.removeAttribute("collections");
             session.setAttribute("collections", addCollection(userID,
                     collectionName, descriptionText, noteText));
 

@@ -33,9 +33,21 @@ public class SetUpCardLocal extends HttpServlet {
 
         RequestDispatcher dispatcher;
         HttpSession session = req.getSession(true);
-        int collectionId = Integer.valueOf(req.getParameter("collectionId"));
-        Collection collection = getCollection(collectionId);
-        List<CardLocal> cardLocals = setUp(collectionId);
+        Collection collection = null;
+        List<CardLocal> cardLocals = null;
+        String collectionIdString = req.getParameter("collectionId");
+        int collectionId = -1;
+
+        if (collectionIdString == null) {
+            collection = (Collection) session.getAttribute("collection");
+            collectionId = collection.getCollectionId();
+        } else {
+            collectionId = Integer.valueOf(collectionIdString);
+            collection = getCollection(collectionId);
+        }
+
+        cardLocals = setUp(collectionId);
+        session.removeAttribute("collection");
         session.setAttribute("collection", collection);
 
         if (cardLocals.size()==0) {
@@ -44,6 +56,7 @@ public class SetUpCardLocal extends HttpServlet {
             dispatcher.forward(req, resp);
 
         } else {
+            session.removeAttribute("cards");
             session.setAttribute("cards", cardLocals);
 
             dispatcher = req.getRequestDispatcher("cardList.jsp");

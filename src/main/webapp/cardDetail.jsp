@@ -35,7 +35,7 @@
             </div>
             <div class="row">
                 <br>
-                <form method="get" action="cardList.jsp">
+                <form method="get" action="setUpCardLocal">
                     <input type="submit" class="btn btn-primary" value="Back to Card List" >
                 </form>
             </div>
@@ -98,7 +98,7 @@
                     <strong>Price</strong>
                 </div>
                 <div class="col-md-4">
-                    <p>${card.cardItemById.getPriceString()}</p>
+                    <p>${card.cardItemById.priceString}</p>
                 </div>
                 <div class="col-md-5">
                     <form method="get" action="updatePrice">
@@ -129,9 +129,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="noteText" >Note Text</label>
-                                <textarea id="noteText" name="NoteText" class="form-control" rows="4" cols="20" placeholder="notes about this card">
-                                    ${card.noteText}
-                                </textarea>
+                                <textarea id="noteText" name="NoteText" class="form-control" rows="4" cols="20" placeholder="notes about this card">${card.noteText}</textarea>
                             </div>
                         </div>
                     </div>
@@ -142,8 +140,6 @@
                     </div>
                 </form>
             </div>
-
-
 
         </div>
     </div>

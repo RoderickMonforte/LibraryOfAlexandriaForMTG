@@ -59,8 +59,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label for="noteText" >Note Text</label>
-                                <textarea id="noteText" name="NoteText" class="form-control" rows="2" cols="20" placeholder="notes about this card" value="">
-                                </textarea>
+                                <textarea id="noteText" name="NoteText" class="form-control" rows="2" cols="20" placeholder="notes about this card" value=""></textarea>
                             </div>
                         </div>
                         <div class="col-md-2">

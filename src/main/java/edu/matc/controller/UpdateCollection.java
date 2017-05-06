@@ -111,6 +111,7 @@ public class UpdateCollection extends HttpServlet {
             edit.collectionAttributeValid();
             if (alert.goOn()) {
                 dao.updateCollection(collection);
+                session.removeAttribute("collections");
                 session.setAttribute("collections", (List<Collection>) dao.getAll
                         (userID));
                 alert.normalize();

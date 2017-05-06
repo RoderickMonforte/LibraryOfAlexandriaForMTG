@@ -75,7 +75,9 @@ public class SetUpCard extends HttpServlet {
         try {
             cardLocal = dao.getOne(cardId);
             collection = daoCollect.getOne(cardLocal.getCollectionId());
+            session.removeAttribute("collection");
             session.setAttribute("collection", collection);
+            session.removeAttribute("card");
             session.setAttribute("card", cardLocal);
         } catch (Exception e) {
             String error = "Could not find card# " + cardId + " " + e

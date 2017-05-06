@@ -38,6 +38,7 @@ public class SetUpCollection extends HttpServlet {
         User user = getUser(req, session);
         List<Collection> collections = setUp(user.getUserId());
 
+        session.removeAttribute("collections");
         session.setAttribute("collections", collections);
         req.setAttribute("alert", alert);
 

@@ -58,6 +58,7 @@ public class AddCardLocal extends HttpServlet {
                     .getCollectionId(), ownedQuantity, wishList, noteText));
         }
 
+        session.removeAttribute("cards");
         session.setAttribute("cards", cardLocals);
 
         req.setAttribute("alert", alert);
@@ -132,6 +133,7 @@ public class AddCardLocal extends HttpServlet {
 
             daoSet.updateCollection(collectionId);
             collection = daoSet.getOne(collectionId);
+            session.removeAttribute("collection");
             session.setAttribute("collection", collection);
 
         } catch (Exception e) {
