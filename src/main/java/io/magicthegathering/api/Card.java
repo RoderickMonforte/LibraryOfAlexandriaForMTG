@@ -101,7 +101,8 @@ public class Card{
 	@JsonProperty("loyalty")
     private int loyalty;
 
-
+	@JsonProperty("starter")
+	private boolean starter;
 
 	public void setColorIdentity(List<String> colorIdentity){
 		this.colorIdentity = colorIdentity;

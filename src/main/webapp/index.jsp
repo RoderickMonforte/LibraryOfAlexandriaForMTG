@@ -28,6 +28,9 @@
             </form>
             <c:choose>
                 <c:when test="${isLoggedIn==true}">
+                    <form action="setUpUser" method="get">
+                        <button type="submit" class="btn btn-info">Update User Profile</button><br><br>
+                    </form>
                     <form action="logOut" method="get">
                         <button type="submit" class="btn btn-info">Log Out</button><br>
                     </form>

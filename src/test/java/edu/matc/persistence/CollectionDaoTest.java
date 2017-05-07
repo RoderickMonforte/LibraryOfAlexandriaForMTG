@@ -1,95 +1,78 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.Collection;
-import edu.matc.entity.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
-
-import static org.junit.Assert.*;
+import static junit.framework.Assert.assertNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by student on 2/23/17.
  */
 public class CollectionDaoTest {
     Collection collection;
-    CollectionDao collectionDao;
-    UserDao dao;
-    int collectionId;
-    String userID;
+    CollectionDao dao;
+    private TestData data;
 
     @Before
     public void setUp() throws Exception {
-        dao = new UserDao();
-        collectionDao = new CollectionDao();
-        User user = new User("test1","test1","test1");
-        dao.addUser(user);
-        userID = "test1";
-
-        collection = new Collection(userID, "TestCollection",
-                "Test Description", "Test Note", Long.valueOf(10), 100);
-        collectionId = collectionDao.addCollection(collection);
+        dao = new CollectionDao();
+        data = new TestData();
     }
 
     @After
-    public void tearDown() throws Exception {
-
-        dao.deleteUser(userID);
-
+    public void tearDown() {
+        try {
+            data.deleteTest();
+        } catch (Exception e) {
+            assertNull("Delete Test failed", e.getMessage());
+        }
     }
-    @Test
-    public void getOne() throws Exception {
-        Collection collection= collectionDao.getOne(collectionId);
-
-        assertEquals("Collection ID and passed ID are same but are not",
-                collectionId, collection.getCollectionId());
-
-    }
-
-    @Test
-    public void getAll() throws Exception {
-        collectionDao = new CollectionDao();
-        List list = collectionDao.getAll(collection.getUserId());
-        assertTrue("Size of collection is > 0 but it is 0", list.size() > 0);
-    }
-
     @Test
     public void addCollection() throws Exception {
 
-        assertTrue("Should be > 0 but not", collectionId > 0);
-        assertEquals("Should be equal", 100, collection.getCardQuantity());
+        assertNotNull("Insert to Collection table failed", data.collection);
 
     }
 
     @Test
-    public void deleteCollection() throws Exception {
-        collection = new Collection(userID, "Test2Collection",
-                "Test2 Description", "Test2 Note", Long.valueOf(102), 1002);
-        collectionId = collectionDao.addCollection(collection);
+    public void testGetAll() throws Exception {
+        collection = dao.getAll(data.user.getUserId()).get(0);
 
-        collectionDao.deleteCollection(collectionId);
-        assertFalse("deleted row should not be found but found", collectionDao
-                .getAll(collection.getUserId()).contains(collection));
+        assertNotNull("Insert to Collection table failed", collection);
+
     }
 
     @Test
-    public void updateCollection() throws Exception {
-        collection.setCardQuantity(200);
-        collectionDao.updateCollection(collection);
-        int result = collectionDao.getOne(collectionId).getCardQuantity();
-        assertEquals("Should be equal but not ",collection.getCardQuantity(),
-                result);
+    public void testGetOne() throws Exception {
+        collection = dao.getOne(data.collection.getCollectionId());
+
+        assertNotNull("Insert to Collection table failed", collection);
 
     }
+
     @Test
-    public void updateCollectionwithId() throws Exception {
-        collection.setCardQuantity(200);
-        collectionDao.updateCollection(375);
-        int result = collectionDao.getOne(collectionId).getCardQuantity();
-        assertEquals("Should be equal but not ",collection.getCardQuantity(),
-                result);
+    public void testUpdateCollection() throws Exception {
+        data.collection.setDisplayName("TestDisplayNameUpdate");
+        dao.updateCollection(data.collection);
+        collection = dao.getOne(data.collection.getCollectionId());
+
+        assertEquals("This should be equal", data.collection.getDisplayName
+                (), collection.getDisplayName());
+
+    }
+
+    @Test
+    public void testUpdateCollectionWithID() throws Exception {
+        data.cardLocal.setOwnedQuantity(5);
+        new CardDao().updateCardLocal(data.cardLocal);
+        dao.updateCollection(data.collection.getCollectionId());
+        collection = dao.getOne(data.collection.getCollectionId());
+
+        assertEquals("This should be equal", 5, collection.getCardQuantity());
 
     }
 }

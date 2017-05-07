@@ -37,6 +37,9 @@ public class Alert {
         }
     }
 
+    /**
+     * Sets the alert to its starting value.
+     */
     public void initialize() {
         hidden = "\"hidden\"";
         type = " ";

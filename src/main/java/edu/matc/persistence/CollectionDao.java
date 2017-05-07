@@ -17,8 +17,8 @@ public class CollectionDao {
      *
      * @return All collections
      */
-    public List getAll(String userID) throws Exception{
-        List collections = new ArrayList<Collection>();
+    public List<Collection> getAll(String userID) throws Exception{
+        List<Collection> collections = new ArrayList<Collection>();
 
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         collections = session.createCriteria(Collection.class).add
@@ -27,6 +27,7 @@ public class CollectionDao {
         session.close();
         return collections;
     }
+
     /** Return a one collection
      *
      * @return one collections

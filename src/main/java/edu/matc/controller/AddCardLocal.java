@@ -163,8 +163,8 @@ public class AddCardLocal extends HttpServlet {
 
         try {
             card = GetWeb.getCard(multiverseId);
-            cardItem = new CardItem(card, GetWeb.getPrice(card.getName
-                    (), card.getSetName()));
+            cardItem = new CardItem(card, GetWeb.getPrice(card.getName(),
+                    card.getSetName()));
             universeId = dao.addCardItem(cardItem);
             cardItem.setUniversalCardId(universeId);
         } catch (HibernateException h) {

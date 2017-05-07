@@ -5,6 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.*;
 
 /**
@@ -13,57 +14,39 @@ import static org.junit.Assert.*;
  */
 public class UserDaoTest {
 
-    UserDao dao;
-    User user;
-    String id;
+    private UserDao dao;
+    private User user;
+    private TestData data;
 
     @Before
-    public void setup() throws Exception{
+    public void setUp() throws Exception {
         dao = new UserDao();
-        user = new User("test1","test1","test1");
-        dao.addUser(user);
-        id = "test1";
+        data = new TestData();
     }
 
     @After
-    public void cleanup() throws Exception {
-        dao.deleteUser(id);
+    public void tearDown() {
+        try {
+            data.deleteTest();
+        } catch (Exception e) {
+            assertNull("Delete Test failed", e.getMessage());
+        }
     }
 
     @Test
-    public void getUserTest() throws Exception {
-        user =  dao.getUser("test1");
+    public void addUser() throws Exception {
 
-        assertNotNull("User is expected to be found but returned NULL!",user);
-
-        User user2 =  dao.getUser("test2");
-        assertNotNull("User is expected to be NOT found but was found!",
-                user);
-    }
-
-    @Test
-    public void updateUserTest() throws Exception {
-        user.setDisplayName("TestChange");
-        dao.updateUser(user);
-
-        User user2 = dao.getUser(id);
-
-        assertEquals("Expecting name change but did not",
-                user2.getDisplayName(), user.getDisplayName());
+        assertNotNull("Insert to Card table failed", data.user);
 
     }
 
     @Test
-    public void deleteUserTest() throws Exception {
-        User user2 = new User("test2","test2","test2");
-        dao.addUser(user2);
+    public void testUpdateUser() throws Exception {
+        data.user.setDisplayName("TestDisplayNameUpdate");
+        dao.updateUser(data.user);
+        user = dao.getUser(data.user.getUserId());
 
-        assertNotNull("User should be found but NULL",dao.getUser
-                (user2.getUserId()));
-
-        dao.deleteUser(user2.getUserId());
-        assertNull("User should NOT be found but found",dao.getUser
-                (user2.getUserId()));
+        assertEquals("These are equal", data.user.getDisplayName(), user.getDisplayName());
 
     }
 

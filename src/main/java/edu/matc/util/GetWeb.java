@@ -28,8 +28,16 @@ public class GetWeb {
     public GetWeb() {
     }
 
+    /**
+     * Given card name and set name of the card it goes out and uses web
+     * service to get the price of that card.
+     * @param cardName
+     * @param setName
+     * @return
+     * @throws URISyntaxException
+     */
     public static double getPrice(String cardName, String setName) throws
-            URISyntaxException, Exception{
+            URISyntaxException {
         Client client = ClientBuilder.newClient();
         WebTarget target = null;
         Invocation.Builder invocation = null;
@@ -39,6 +47,7 @@ public class GetWeb {
         URI uri = null;
         String[] result = setName.split("\\s+");
         String priceString = null;
+        int trials = 0;
         double price = 0.0;
 
         setUp();
@@ -58,7 +67,15 @@ public class GetWeb {
             invocation.header(Property.get("header.type"), Property.get
                     ("header.value"));
 
-            response = invocation.get(String.class);
+            try {
+                response = invocation.get(String.class);
+            } catch (Exception e) {
+                trials++;
+                if (trials < 5 && price == 0.0) {
+                    i++;
+                }
+            }
+
             if (!response.equals("[\"\"]")) {
                 priceString = response.substring(3,(response.length()-2))
                         .replace(",","").toString();
@@ -68,6 +85,13 @@ public class GetWeb {
         return price;
     }
 
+    /**
+     * given the multiverse id it will use web service to get information
+     * about that card.
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public static Card getCard(int id) throws Exception {
 
         setUp();
@@ -75,7 +99,6 @@ public class GetWeb {
         String https_url = Property.get("magicApi.uri") + id;
         URL url;
         String cards = "";
-        setUp();
 
         try {
             url = new URL(https_url);
@@ -102,6 +125,9 @@ public class GetWeb {
         return  result.getCard();
     }
 
+    /**
+     * Property is setup with the first call
+     */
     private static void setUp() {
 
         if (Property.isNull()) {

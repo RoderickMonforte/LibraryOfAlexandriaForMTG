@@ -63,6 +63,21 @@ public class NewUserEdit {
 
     }
 
+    public boolean userAttributeValidForUpdate() {
+
+        alert.initialize();
+
+        displayNameValueIsValid();
+        passwordIsValid();
+
+        if (alert.goOn()) {
+            alert.success("User profile updated.");
+        }
+
+        return alert.goOn();
+
+    }
+
     /**
      * check display name against edits.
      *
@@ -102,7 +117,7 @@ public class NewUserEdit {
         } else if (!passwordText.matches("^[^\\x00-\\x1F\\x80-\\x9F]+$")) {
             alert.error(2,"Password contains invalid values. Please " +
                     "use visible characters only.");
-        } else if (passwordText.length() < 5 && passwordText.length() > 12) {
+        } else if (passwordText.length() < 5 || passwordText.length() > 12) {
             alert.error(2,"Password must be five to twelve characters long");
         } else if (!passwordText.equals(rePasswordText)) {
             alert.error(3,"Password does not match re-typed password. Please " +

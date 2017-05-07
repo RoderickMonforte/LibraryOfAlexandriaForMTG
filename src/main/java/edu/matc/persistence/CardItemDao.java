@@ -31,8 +31,6 @@ public class CardItemDao {
                 cardItem = (CardItem) criteria.list().get(0);
             }
         } else if (option.equals("universalCardId")) {
-            cardItem = (CardItem) session.createCriteria(CardItem.class).add
-                    (Restrictions.eq("universalCardId",id));
             cardItem = (CardItem) session.get(CardItem.class, id);
         }
 
@@ -64,8 +62,12 @@ public class CardItemDao {
         CardItem cardItem = null;
 
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
-        cardItem = (CardItem) session.createCriteria(CardItem.class).add
-                    (Restrictions.eq("id",id));
+        Criteria criteria = session.createCriteria(CardItem.class);
+        criteria.add(Restrictions.eq("id",id));
+
+        if (criteria.list().size() > 0) {
+            cardItem = (CardItem) criteria.list().get(0);
+        }
 
         session.close();
         return cardItem;
