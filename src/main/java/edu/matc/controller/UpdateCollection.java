@@ -50,6 +50,7 @@ public class UpdateCollection extends HttpServlet {
         String mode = parameters[0];
         int collectionId = Integer.valueOf(parameters[1]);
 
+        alert.initialize();
         String target = process(req, session, mode, userID, collectionId);
         req.setAttribute("alert", alert);
         dispatcher = req.getRequestDispatcher(target);
